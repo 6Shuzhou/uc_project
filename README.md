@@ -1,6 +1,4 @@
-## Sen4AgriNet Models
-
-**Contributors:** [Sykas D.](https://github.com/dimsyk), [Zografakis D.](https://github.com/dimzog), [Sdraka M.](https://github.com/paren8esis)
+## New Experiments with Sen4AgriNet
 
 **This repository contains the models and training scripts for reproducing the experiments presented in:**\
 [A Sentinel-2 multi-year, multi-country benchmark dataset for crop classification and segmentation with deep learning](https://ieeexplore.ieee.org/document/9749916).

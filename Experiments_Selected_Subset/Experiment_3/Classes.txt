@@ -1,0 +1,90 @@
+Background/Other
+Wheat
+Maize
+Rice
+Sorghum
+Barley
+Rye
+Oats
+Millets
+Mixed cereals
+Other
+Leafy or stem vegetables
+Artichokes
+Cauliflowers and broccoli
+Lettuce
+Spinach
+Other leafy or stem vegetables n.e.c.
+Cucumbers
+Eggplants (aubergines)
+Tomatoes
+Watermelons
+Cantaloupes and other melons
+Pumpkin squash and gourds
+Root bulb or tuberous vegetables
+Carrots
+Turnips
+Onions (incl. shallots)
+Leeks and other alliaceous vegetables
+Other root bulb or tuberous vegetables n.e.c.
+Mushrooms and truffles
+Figs
+Other tropical and subtropical fruits n.e.c.
+Grapefruit and pomelo
+Lemons and Limes
+Oranges
+Tangerines mandarins clementines
+Grapes
+Kiwi fruit
+Apples
+Apricots
+Cherries and sour cherries
+Peaches and nectarines
+Pears and quinces
+Plums and sloes
+Other pome fruits and stone fruits n.e.c.
+Almonds
+Chestnuts
+Hazelnuts
+Pistachios
+Walnuts
+Other nuts n.e.c.
+Other fruits
+Soya beans
+Rapeseed
+Sunflower
+Other temporary oilseed crops n.e.c.
+Olives
+Potatoes
+Tea
+Other beverage crops n.e.c.
+Chilies and peppers (capsicum spp.)
+Anise badian and fennel
+Other temporary spice crops n.e.c.
+Pepper (piper spp.)
+Beans
+Broad beans
+Chick peas
+Lentils
+Lupins
+Peas
+Leguminous crops n.e.c.
+Sugar beet
+Other sugar crops n.e.c.
+Grasses and other fodder crops
+Temporary grass crops
+Permanent grass crops
+Flax hemp and other similar products
+Temporary medicinal etc. crops
+Permanent medicinal etc. crops
+Flower crops
+Temporary flower crops
+Permanent flower crops
+Tobacco
+Other Classes
+Artificial Surfaces
+Fallow land
+Other crops
+Other crops temporary
+Other crops permanent
+Unknown crops
