@@ -2,71 +2,63 @@ import pandas as pd
 import netCDF4
 import xarray as xr
 import numpy as np
+import argparse
+import os
 from pathlib import Path
 from utils.settings.config import LINEAR_ENCODER, CROP_ENCODING
 
-crop_encoding = {v: k for k, v in CROP_ENCODING.items()}
-crop_encoding[0] = 'Background/Other'
 
-def retrieve_unique_classes(experiment):
-    train_set = pd.read_csv(f"Experiments_Dataframes\Experiment_{experiment}\Training_Set_Experiment_{experiment}.csv")
-    val_set = pd.read_csv(f"Experiments_Dataframes\Experiment_{experiment}\Validation_Set_Experiment_{experiment}.csv")
-    test_set = pd.read_csv(f"Experiments_Dataframes\Experiment_{experiment}\Test_Set_Experiment_{experiment}.csv")
-    classes = set()
+def compute_class_weights(transformation_setting, size, experiment, fold):
+    data_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/"
+    training_data_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/Training_Set/"
 
-    for patch_file in train_set['Patch']:
-        patch = netCDF4.Dataset(Path(f"Experiments_Selected_Subset\Experiment_{experiment}\Training_Set" + "\\" + patch_file), 'r')
-        labels = xr.open_dataset(xr.backends.NetCDF4DataStore(patch['labels'])).labels.to_numpy()
-        classes = classes | set(np.unique(labels))
+    crop_encoding = {v: k for k, v in CROP_ENCODING.items()}
+    crop_encoding[0] = 'Background/Other'
 
-    for patch_file in val_set['Patch']:
-        patch = netCDF4.Dataset(Path(f"Experiments_Selected_Subset\Experiment_{experiment}\Validation_Set" + "\\" + patch_file), 'r')
-        labels = xr.open_dataset(xr.backends.NetCDF4DataStore(patch['labels'])).labels.to_numpy()
-        classes = classes | set(np.unique(labels))
-    
-    for patch_file in test_set['Patch']:
-        patch = netCDF4.Dataset(Path(f"Experiments_Selected_Subset\Experiment_{experiment}\Test_Set" + "\\" + patch_file), 'r')
-        labels = xr.open_dataset(xr.backends.NetCDF4DataStore(patch['labels'])).labels.to_numpy()
-        classes = classes | set(np.unique(labels))
+    selected_classes = [0] + list(LINEAR_ENCODER.keys())[:-1]
+    class_names = {i: crop_encoding[c] for i,c in enumerate(selected_classes)}
+    class_counts = {c: 0 for c in list(class_names.keys())[1:]}
 
-    return sorted(list(classes))
+    for file in os.listdir(training_data_path):
+        if '_labels' in file:
+            current_labels = np.load(training_data_path + file)
+        
+            classes, counts = np.unique(current_labels, return_counts=True)
 
-def compute_class_weights(experiment):
-    train_set = pd.read_csv(f"Experiments_Dataframes\Experiment_{experiment}\Training_Set_Experiment_{experiment}.csv")
-    unique_classes = retrieve_unique_classes(experiment)
-    class_counts = {c: 0 for c in unique_classes}
-
-    for patch_file in train_set['Patch']:
-        patch = netCDF4.Dataset(Path(f"Experiments_Selected_Subset\Experiment_{experiment}\Training_Set" + "\\" + patch_file), 'r')
-        labels = xr.open_dataset(xr.backends.NetCDF4DataStore(patch['labels'])).labels.to_numpy()
-        classes, counts = np.unique(labels, return_counts=True)
-
-        for i in range(len(classes)):
-            if (classes[i] in LINEAR_ENCODER.keys()) and (classes[i] != 0):
-                class_counts[classes[i]] += counts[i]
+            for i in range(len(classes)):
+                if classes[i] != 0:
+                    class_counts[classes[i]] += counts[i]
 
     total_count = sum(list(class_counts.values()))
     class_weights = {}
 
-    print(f"Experiment {experiment}, Total Count: {total_count}, Class Counts: {class_counts}")
+    print(f"Size {size} Experiment {experiment} Fold {fold} Setting {transformation_setting}, Total Count: {total_count}, Class Counts: {class_counts}")
 
     for k, v in class_counts.items():
-        if v != 0:
-            class_weights[k] = total_count / (len(LINEAR_ENCODER) * v)
-        else:
-            class_weights[k] = 0    
+        class_weights[k] = total_count / (len(class_counts) * v)
 
-    with open(f"Experiments_Selected_Subset\Experiment_{experiment}\Class_Weights.txt", "w") as file:
+    print(class_weights)
+    
+    with open(data_path + "Class_Weights.txt", "w") as file:
         for cw in class_weights.values():
             file.write(f"{cw}\n")
 
-    with open(f"Experiments_Selected_Subset\Experiment_{experiment}\Encoded_Classes.txt", "w") as file:
+    with open(data_path + "Classes.txt", "w") as file:
         for c in class_weights.keys():
-            file.write(f"{c}\n")
+            file.write(f"{class_names[c]}\n")
 
-    with open(f"Experiments_Selected_Subset\Experiment_{experiment}\Classes.txt", "w") as file:
-        for c in class_weights.keys():
-            file.write(f"{crop_encoding[c]}\n")
 
-compute_class_weights(2)
-compute_class_weights(3)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Select Files of Dataset')
+
+    parser.add_argument('--size', type=int, required=True,
+                        help='The Dataset Percentage Size')
+    parser.add_argument('--experiment', type=int, choices=[2,3], required=True,
+                        help='Choose Experiment')
+    parser.add_argument('--fold', type=int, required=True,
+                        help='The K-Fold')
+    parser.add_argument('--setting', type=int, choices=[1,2], default=1, required=True,
+                        help='Transformation Setting')
+    args = parser.parse_args()
+    
+    compute_class_weights(args.setting, args.size, args.experiment, args.fold)

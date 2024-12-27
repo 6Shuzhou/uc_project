@@ -4,6 +4,8 @@ import numpy as np
 from numpy.lib.stride_tricks import as_strided
 import pandas as pd
 import xarray as xr
+import argparse
+from utils.settings.config import LINEAR_ENCODER
 
 IMG_SIZE = 366
 BANDS = {
@@ -14,7 +16,8 @@ BANDS = {
 
 REFERENCE_BAND = 'B02'
 
-def process_patch(source_path, file, out_path, num_buckets, bands, classes, padded_patch_height,
+
+def process_patch(source_path, file, out_path, num_buckets, bands, padded_patch_height,
                   padded_patch_width, medians_dtype, label_dtype, group_freq, output_size,
                   pad_top, pad_bot, pad_left, pad_right):
 
@@ -33,9 +36,8 @@ def process_patch(source_path, file, out_path, num_buckets, bands, classes, padd
         for i in range(medians.shape[0]):
             for j in range(medians.shape[1]):
                 np.save(out_path + f"{file[:-3] + '_sub_patch_' + str(sub_idx) + '_image'}", medians[i, j, 3:9, :, :, :].reshape((6*medians.shape[3], medians.shape[4], medians.shape[5])).astype(medians_dtype))
-                sub_idx+=1
             
-    labels = get_labels(netcdf, classes, output_size, pad_top, pad_bot, pad_left, pad_right)
+    labels = get_labels(netcdf, output_size, pad_top, pad_bot, pad_left, pad_right)
     labels = sliding_window_view(labels, output_size, output_size)
     labels = labels.squeeze() 
 
@@ -47,7 +49,7 @@ def process_patch(source_path, file, out_path, num_buckets, bands, classes, padd
         for i in range(labels.shape[0]):
             for j in range(labels.shape[1]):
                 np.save(out_path + f"{file[:-3] + '_sub_patch_' + str(lbl_idx) + '_labels'}", labels[i, j, :, :].reshape((1, labels.shape[2], labels.shape[3])).astype(label_dtype))
-                lbl_idx += 1
+
 
 def sliding_window_view(arr, window_shape, steps):
     in_shape = np.array(arr.shape[-len(steps):])  
@@ -110,10 +112,13 @@ def get_medians(netcdf, start_bin, window, group_freq, bands,
     return medians.transpose(1, 0, 2, 3)   # (T, B, H, W)
 
 
-def get_labels(netcdf, classes, output_size, pad_top, pad_bot, pad_left, pad_right):
+def get_labels(netcdf, output_size, pad_top, pad_bot, pad_left, pad_right):
     labels = xr.open_dataset(xr.backends.NetCDF4DataStore(netcdf['labels']))['labels'].values
+    selected_classes = [0] + list(LINEAR_ENCODER.keys())[:-1]
 
-    mapping = {c: i for i,c in enumerate(classes)}
+    labels = np.where(np.isin(labels, selected_classes), labels, 0)
+    mapping = {c: i for i,c in enumerate(selected_classes)}
+
     labels = np.vectorize(mapping.get)(labels)
 
     if (output_size[0] < labels.shape[0]) or (output_size[1] < labels.shape[1]):
@@ -186,28 +191,40 @@ def calculate_subpatches(output_size):
 
     return padded_patch_height, padded_patch_width, pad_top, pad_bot, pad_left, pad_right
 
-def convert_netcdf4_file(experiment, subset):
-    core_path = f"Experiments_Selected_Subset\Experiment_{experiment}\\"
-    source_path = f"Experiments_Selected_Subset\Experiment_{experiment}\{subset}_Set\\"
-    destination_path = f"Experiments_Transformed_Selected_Subset\Experiment_{experiment}\{subset}_Set\\"
-    encoded_classes_file = core_path + "Encoded_Classes.txt"
+
+def convert_netcdf4_file(size, experiment, fold, subset, transformation_setting):
+    source_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/"
+    destination_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/"
     medians_dtype = np.float32
     label_dtype = np.int16
     group_freq = '1MS'
-    bands = ['B02', 'B03', 'B04', 'B08']
     output_size = [366, 366]
-    #output_size = [61, 61]
     num_buckets = len(pd.date_range(start=f'2020-01-01', end=f'2021-01-01', freq=group_freq)) - 1
     padded_patch_height, padded_patch_width, pad_top, pad_bot, pad_left, pad_right = calculate_subpatches(output_size)
-
-    with open(encoded_classes_file, "r") as file:
-        file_content = file.read()
-
-    classes = [int(c) for c in file_content.split('\n')[:-1]]
     all_net4cdf_files = os.listdir(source_path)
 
-    print(f'Start Processing Files of Experiment {experiment} {subset} Set.')
-    print(f'Saving Processed Files of Experiment {experiment} {subset} Set Into: {destination_path}.\n')
+    if transformation_setting == 1:
+        bands = ['B02', 'B03', 'B04', 'B08']
+    else:
+        bands = ['B02', 'B03', 'B04', 'B8A', 'B11', 'B12']
+
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/"):
+        os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/")
+    
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/"):
+        os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/")
+
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/"):
+        os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/")
+    
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/"):
+        os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/")
+    
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/"):
+        os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/")
+
+    print(f'Start Processing Files using Tranformation Setting {transformation_setting} of Experiment {experiment} {subset} Set with Size {size} and Fold {fold}.')
+    print(f'Saving Processed Files of Experiment {experiment} {subset} Set with Size {size} and Fold {fold} Into: {destination_path}.\n')
 
     for i, net4cdf_file in enumerate(all_net4cdf_files):
         print(f"- Processing File {i+1} of {len(all_net4cdf_files)} of Experiment {experiment} {subset} Set: {net4cdf_file}")
@@ -217,7 +234,6 @@ def convert_netcdf4_file(experiment, subset):
                       out_path=destination_path, 
                       num_buckets=num_buckets, 
                       bands=bands, 
-                      classes=classes,
                       padded_patch_height=padded_patch_height, 
                       padded_patch_width=padded_patch_width, 
                       pad_top=pad_top, 
@@ -231,10 +247,26 @@ def convert_netcdf4_file(experiment, subset):
 
     print(f'\nFinished Processing Files of Experiment {experiment} {subset} Set.\n')
 
-convert_netcdf4_file(2, "Training")
-convert_netcdf4_file(2, "Validation")
-convert_netcdf4_file(2, "Test")
+# convert_netcdf4_file(2, "Training")
+# convert_netcdf4_file(2, "Validation")
+# convert_netcdf4_file(2, "Test")
 
-convert_netcdf4_file(3, "Training")
-convert_netcdf4_file(3, "Validation")
-convert_netcdf4_file(3, "Test")
+# convert_netcdf4_file(3, "Training")
+# convert_netcdf4_file(3, "Validation")
+# convert_netcdf4_file(3, "Test")
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Select Files of Dataset')
+
+    parser.add_argument('--size', type=int, required=True,
+                        help='The Dataset Percentage Size')
+    parser.add_argument('--experiment', type=int, choices=[2,3], required=True,
+                        help='Choose Experiment')
+    parser.add_argument('--fold', type=int, required=True,
+                        help='The K-Fold')
+    parser.add_argument('--setting', type=int, choices=[1,2], default=1, required=False,
+                        help='Transformation Setting')
+    args = parser.parse_args()
+    
+    for subset in ["Training", "Validation", "Test"]: 
+        convert_netcdf4_file(args.size, args.experiment, args.fold, subset, args.setting)

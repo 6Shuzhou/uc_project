@@ -1,9 +1,10 @@
 import numpy as np
 import os
+import argparse
 
-def compute_means_n_stds(experiment):
-    data_path = f"Experiments_Transformed_Selected_Subset\Experiment_{experiment}\\"
-    training_data_path = f"Experiments_Transformed_Selected_Subset\Experiment_{experiment}\Training_Set\\"
+def compute_means_n_stds(transformation_setting, size, experiment, fold):
+    data_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/"
+    training_data_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Transformed_Selected_Dataset_{transformation_setting}/{size}%/Experiment_{experiment}/Fold_{fold}/Training_Set/"
     all_means = []
     all_stds = []
 
@@ -23,6 +24,19 @@ def compute_means_n_stds(experiment):
     with open(data_path + "Standard_Deviations.txt", "w") as file:
         for std in np.std(np.array(all_stds), axis=0):
             file.write(f"{std}\n")
+            
 
-compute_means_n_stds(2)
-compute_means_n_stds(3)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Select Files of Dataset')
+
+    parser.add_argument('--size', type=int, required=True,
+                        help='The Dataset Percentage Size')
+    parser.add_argument('--experiment', type=int, choices=[2,3], required=True,
+                        help='Choose Experiment')
+    parser.add_argument('--fold', type=int, required=True,
+                        help='The K-Fold')
+    parser.add_argument('--setting', type=int, choices=[1,2], default=1, required=True,
+                        help='Transformation Setting')
+    args = parser.parse_args()
+    
+    compute_means_n_stds(args.setting, args.size, args.experiment, args.fold)
