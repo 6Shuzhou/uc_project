@@ -12,3 +12,6 @@ models/__pycache__
 *.pkl
 *.nc
 *.npy
+
+hls-foundation-os
+mmsegmentation
