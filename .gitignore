@@ -10,8 +10,6 @@ models/__pycache__
 /venv/
 
 *.pkl
-*.nc
-*.npy
 
 hls-foundation-os
 mmsegmentation

@@ -1,0 +1,22 @@
+\begin{tabular}{lllr}
+\toprule
+Year & Country & Tile & Number of Patches \\
+\midrule
+2019 & Catalonia & 31TBF & 299 \\
+2019 & Catalonia & 31TCF & 454 \\
+2019 & Catalonia & 31TCG & 797 \\
+2019 & Catalonia & 31TDF & 85 \\
+2019 & Catalonia & 31TDG & 686 \\
+2019 & France & 31TCJ & 895 \\
+2019 & France & 31TCL & 900 \\
+2019 & France & 31TDK & 900 \\
+2019 & France & 31TDM & 900 \\
+2019 & France & 31UCP & 900 \\
+2019 & France & 31UDR & 880 \\
+2020 & Catalonia & 31TBF & 299 \\
+2020 & Catalonia & 31TCF & 454 \\
+2020 & Catalonia & 31TCG & 792 \\
+2020 & Catalonia & 31TDF & 86 \\
+2020 & Catalonia & 31TDG & 686 \\
+\bottomrule
+\end{tabular}
