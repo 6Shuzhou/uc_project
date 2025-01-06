@@ -4,7 +4,8 @@ import netCDF4
 import xarray as xr
 from pathlib import Path
 
-country_dict = {'31TBF':'Catalonia', 
+
+country_dict = {'31TBF':'Catalonia', # Mapping of Tiles to Country
                 '31TCF':'Catalonia', 
                 '31TCG':'Catalonia', 
                 '31TDF':'Catalonia', 
@@ -16,19 +17,19 @@ country_dict = {'31TBF':'Catalonia',
                 '31UCP':'France', 
                 '31UDR':'France'}
 
-dataset_path = r'D:\UC_Project_Sen4AgriNet_Dataset\Regular_Dataset' # Specify Path to Dataset
+dataset_path = r'D:\UC_Project_Sen4AgriNet_Dataset\Regular_Dataset' # Absolute Path to Dataset, Relative Path in Project Folder to Dataset: Full_Sen4AgriNet_Dataset
 
-if not os.path.exists("Experiments_Dataframes\Patch_Data_Frame.pkl"): # Create and Save Dataframe to File in case it doesn't exist
+if not os.path.exists("Dataframes/Patch_Data_Frame.pkl"): # Create and Save Dataframe to File in case it doesn't exist 
     pd.DataFrame(columns=['Year',
                           'Country', 
                           'Tile', 
                           'Patch',
-                          'Labels']).to_pickle("Experiments_Dataframes\Patch_Data_Frame.pkl") 
+                          'Labels']).to_pickle("Dataframes/Patch_Data_Frame.pkl") 
 
-patch_df = pd.read_pickle("Experiments_Dataframes\Patch_Data_Frame.pkl") # Read in current Dataframe
+patch_df = pd.read_pickle("Dataframes/Patch_Data_Frame.pkl") # Read in current Dataframe
 current_length = len(patch_df)
 
-for year in os.listdir(dataset_path): # Save File Info of each File in Dataset
+for year in os.listdir(dataset_path): # Save File Info of each Patch (NETCDF4 File) of Original Sen4AgriNet Dataset to Dataframe
     for tile in os.listdir(dataset_path + '\\' + year):
         if len(patch_df[(patch_df['Year'] == year) & (patch_df['Tile'] == tile)]) == 0:
             for patch in os.listdir(dataset_path + '\\' + year + '\\' + tile):
@@ -42,4 +43,4 @@ print(patch_df.sort_values(by=['Year', 'Tile']).reset_index(drop=True))
 print(sorted(list(set(zip(patch_df['Year'], patch_df['Tile']))), key=lambda x: (x[0], x[1])))
 
 if current_length != len(patch_df):
-    patch_df.to_pickle("Experiments_Dataframes\Patch_Data_Frame.pkl")
+    patch_df.to_pickle("Dataframes/Patch_Data_Frame.pkl") # Save Dataframe to File

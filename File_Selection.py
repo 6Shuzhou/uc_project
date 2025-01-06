@@ -3,24 +3,24 @@ import os
 import pandas as pd
 import argparse
 
-def select_n_move_files(df, size, experiment, fold, subset):
-    core_dataset_path = r'D:/UC_Project_Sen4AgriNet_Dataset/Regular_Dataset'
-    #destination_path = f"Experiments_Datasets\{size}%\Experiment_{experiment}\Fold_{fold}\{subset}_Set\\"
-    destination_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/"
 
-    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%"):
+def select_n_move_files(df, size, experiment, fold, subset): # Move Selected Files to Selected Dataset Path
+    core_dataset_path = r'D:/UC_Project_Sen4AgriNet_Dataset/Regular_Dataset' # Absolute Path to Dataset, Relative Path in Project Folder to Dataset: Full_Sen4AgriNet_Dataset
+    destination_path = f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/" # Absolute Path to Selected Dataset, Relative Path in Project Folder to Selected Dataset: Selected_Sen4AgriNet_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set/
+
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%"): # Create Absolute Path to Selected Dataset, Relative Path in Project Folder to Selected Dataset: Selected_Sen4AgriNet_Dataset/{size}%
         os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%")
     
-    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%\Experiment_{experiment}"):
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}"): # Absolute Path, Relative Path in Project Folder to Selected Dataset: Selected_Sen4AgriNet_Dataset/{size}%/Experiment_{experiment}
         os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}")
     
-    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}"):
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}"): # Absolute Path, Relative Path in Project Folder to Selected Dataset: Selected_Sen4AgriNet_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}
         os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}")
     
-    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set"):
+    if not os.path.exists(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set"): # Absolute Path, Relative Path in Project Folder to Selected Dataset: Selected_Sen4AgriNet_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set
         os.mkdir(f"D:/UC_Project_Sen4AgriNet_Dataset/Selected_Dataset/{size}%/Experiment_{experiment}/Fold_{fold}/{subset}_Set")
 
-    for i in range(len(df)):
+    for i in range(len(df)): # Move each Selected File
         if df.loc[i]['Patch'] not in os.listdir(destination_path):
             source_path = core_dataset_path + '\\' + f"{df.loc[i]['Year']}\{df.loc[i]['Tile']}\\"
 
@@ -41,6 +41,6 @@ if __name__ == '__main__':
                         help='The K-Fold')
     args = parser.parse_args()
 
-    for subset in ["Training", "Validation", "Test"]:
-        current_df = pd.read_csv(f"Experiments_Dataframes\{args.size}%\Experiment_{args.experiment}\Fold_{args.fold}\{subset}_Set.csv")
+    for subset in ["Training", "Validation", "Test"]: # Move Selected Files per Subset
+        current_df = pd.read_csv(f"Dataframes/{args.size}%/Experiment_{args.experiment}/Fold_{args.fold}/{subset}_Set.csv")
         select_n_move_files(current_df, args.size, args.experiment, args.fold, subset)

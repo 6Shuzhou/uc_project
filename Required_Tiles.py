@@ -1,24 +1,27 @@
 import pandas as pd
+import argparse
 
-def required_tiles(df, experiment, subset):
-    print(f"Necessary Tiles for {subset} Set of Experiment {experiment}")
+
+def required_tiles(df, size, experiment, fold, subset): # Determines the Data of which Tiles is required
+    print(f"Necessary Tiles for {subset} Set of Fold {fold} of Experiment {experiment} with Size {size}%")
     
     for year, tile in sorted(list(set(zip(df['Year'], df['Tile']))), key=lambda x: (x[0], x[1])):
         print(f"- Year: {year}, Tile: {tile}")
     
     print('\n')
 
-train_exp_2 = pd.read_csv("Experiments_Dataframes\Experiment_2\Training_Set_Experiment_2.csv")
-val_exp_2 = pd.read_csv("Experiments_Dataframes\Experiment_2\Validation_Set_Experiment_2.csv")
-test_exp_2 = pd.read_csv("Experiments_Dataframes\Experiment_2\Test_Set_Experiment_2.csv")
 
-train_exp_3 = pd.read_csv("Experiments_Dataframes\Experiment_3\Training_Set_Experiment_3.csv")
-val_exp_3 = pd.read_csv("Experiments_Dataframes\Experiment_3\Validation_Set_Experiment_3.csv")
-test_exp_3 = pd.read_csv("Experiments_Dataframes\Experiment_3\Test_Set_Experiment_3.csv")
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Perform Required Tiles Analysis of Selected Dataset')
 
-required_tiles(train_exp_2, 2, "Training")
-required_tiles(train_exp_2, 2, "Validation")
-required_tiles(train_exp_2, 2, "Test")
-required_tiles(train_exp_3, 3, "Training")
-required_tiles(train_exp_3, 3, "Validation")
-required_tiles(train_exp_3, 3, "Test")
+    parser.add_argument('--size', type=int, required=True,
+                        help='The Dataset Percentage Size')
+    parser.add_argument('--experiment', type=int, choices=[2,3], required=True,
+                        help='Choose Experiment')
+    parser.add_argument('--fold', type=int, required=True,
+                        help='The K-Fold')
+    args = parser.parse_args()
+    
+    for subset in ['Training', 'Validation', 'Test']:
+        current_df = pd.read_csv(f"Dataframes/{args.size}%/Experiment_{args.experiment}/Fold_{args.fold}/{subset}_Set.csv") # Relative Path in Project Folder
+        required_tiles(current_df, args.size, args.experiment, args.fold, subset)
