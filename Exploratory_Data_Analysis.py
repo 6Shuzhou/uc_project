@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as cm
 
+
 df = pd.read_pickle("Dataframes/Patch_Data_Frame.pkl")
 
 number_of_patches_per_year_country_tile_df = df.groupby(['Year', 'Country', 'Tile']).size().reset_index(name='Number of Patches') # Retrieve Number of Patches per Year/Country/Tile
@@ -36,10 +37,10 @@ for s in [5,10,25,50]: # Retrieve Class Counts per Data Subset
             for j in range(len(counts_set)):
                 counts[j].append(counts_set[j])
             
-            plt.figure(figsize=(10,10))
+            plt.figure(figsize=(13,10))
             plt.barh(classes, counts_set)
-            plt.title(f"Count Distribution of {sb} Set of {e} Experiment Dataset with Size {s}%")
-            plt.xlabel('Count')
+            plt.title(f"Count Distribution of {sb} Set of {e} Experiment Dataset with Size {s}%", fontsize=20, ha='center', pad=20)
+            plt.xlabel('Count', fontsize=15)
             plt.savefig(f"Exploratory_Data_Analysis_Files/Class_Counts_Distribution_Plots/Class_Counts_Distribution_Size_{s}_{e}_Experiment_{sb}_Set.png")
             plt.show()
 
@@ -54,10 +55,10 @@ example_spectral_imagery = np.load("Exploratory_Data_Analysis_Files/Example_Tran
 example_labeling = np.load("Exploratory_Data_Analysis_Files/Example_Transformed_Patch/2019_31TCJ_patch_24_09_labels.npy")
 
 for i, band in enumerate(['B02', 'B03', 'B04', 'B8A', 'B11', 'B12']): # Visualize Example Transformed Patch
-    plt.figure(figsize=(10, 10)) 
+    plt.figure(figsize=(12, 10)) 
     plt.imshow(example_spectral_imagery[i+7, :, :], cmap='viridis')
-    plt.title(f"Spectral Band {band} of a Single Patch at a Single Timestep")
     plt.colorbar()
+    plt.title(f"Spectral Band {band} of a Single Patch at a Single Timestep", fontsize=20,  pad=20)
     plt.savefig(f"Exploratory_Data_Analysis_Files/Example_Transformed_Patch_Visualization/{band}.png")
     plt.show()
 
@@ -74,11 +75,11 @@ label_mapping = {0:"Background/Other",
                  10:"Potatoes",
                  11:"Peas"}
 
-fig = plt.figure(figsize=(10,10))
+fig = plt.figure(figsize=(12,10))
 colormap = cm.get_cmap('tab20', len(label_mapping))
 plt.imshow(example_labeling[0, :, :], cmap=colormap, interpolation='none', alpha=0.5)
 handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colormap(k), markersize=10, label=f"{v}") for k,v in label_mapping.items()]
 plt.legend(handles=handles, loc='upper right', title="Classes", frameon=False, title_fontproperties={'weight':'bold'})
-plt.title("Pixel-Wise Labelling of a Single Patch")
+plt.title("Pixel-Wise Labelling of a Single Patch", fontsize=20)
 plt.savefig("Exploratory_Data_Analysis_Files/Example_Transformed_Patch_Visualization/Labels.png")
 plt.show()
