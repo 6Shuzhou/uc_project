@@ -16,6 +16,28 @@ with open("Exploratory_Data_Analysis_Files/Number_of_Patches_per_Year_Country_Ti
 
 sizes = []
 experiments = []
+n_patches_training = []
+n_patches_validation = []
+n_patches_test = []
+
+for i, e in enumerate(["Spatial", "Spatio-Temporal"]):
+    for s in [5,10,25,50]: # Retrieve NBumber of Patches per Data Subset
+        n_patches_training.append(len(pd.read_csv(f"Dataframes/{s}%/Experiment_{i+2}/Fold_1/Training_Set.csv")))
+        n_patches_validation.append(len(pd.read_csv(f"Dataframes/{s}%/Experiment_{i+2}/Fold_1/Validation_Set.csv")))
+        n_patches_test.append(len(pd.read_csv(f"Dataframes/{s}%/Experiment_{i+2}/Fold_1/Test_Set.csv")))
+
+        sizes.append(str(s) + '\%')
+        experiments.append(e)
+
+number_of_patches_per_subset_df = pd.DataFrame({"Experiment":experiments, "Size":sizes, "Patches in Training Set":n_patches_training, "Patches in Validation Set":n_patches_validation, "Patches in Test Set":n_patches_test,})
+number_of_patches_per_subset_df_latex = number_of_patches_per_subset_df.to_latex(index=False)
+
+number_of_patches_per_subset_df.to_csv("Exploratory_Data_Analysis_Files/Number_of_Patches_per_Subset.csv")
+with open("Exploratory_Data_Analysis_Files/Number_of_Patches_per_Subset_Latex.txt", "w") as file:
+    file.write(number_of_patches_per_subset_df_latex)
+
+sizes = []
+experiments = []
 subsets = []
 counts = [[], [], [], [], [], [], [], [], [], [], []]
 
@@ -30,7 +52,7 @@ for s in [5,10,25,50]: # Retrieve Class Counts per Data Subset
             with open(current_counts_path, 'r') as counts_file:
                 counts_set = list(map(int, counts_file.read().split("\n")[:-1]))
 
-            sizes.append(str(s) + '%')
+            sizes.append(str(s) + '\%')
             experiments.append(e)
             subsets.append(sb)
             
@@ -41,6 +63,8 @@ for s in [5,10,25,50]: # Retrieve Class Counts per Data Subset
             plt.barh(classes, counts_set)
             plt.title(f"Count Distribution of {sb} Set of {e} Experiment Dataset with Size {s}%", fontsize=20, ha='center', pad=20)
             plt.xlabel('Count', fontsize=15)
+            plt.xticks(fontsize=10)
+            plt.yticks(fontsize=15)
             plt.savefig(f"Exploratory_Data_Analysis_Files/Class_Counts_Distribution_Plots/Class_Counts_Distribution_Size_{s}_{e}_Experiment_{sb}_Set.png")
             plt.show()
 

@@ -1,0 +1,9 @@
+,Experiment,Size,Patches in Training Set,Patches in Validation Set,Patches in Test Set
+0,Spatial,5\%,153,50,55
+1,Spatial,10\%,309,99,108
+2,Spatial,25\%,794,256,259
+3,Spatial,50\%,1541,531,527
+4,Spatio-Temporal,5\%,198,68,67
+5,Spatio-Temporal,10\%,399,138,135
+6,Spatio-Temporal,25\%,999,326,331
+7,Spatio-Temporal,50\%,2001,659,654

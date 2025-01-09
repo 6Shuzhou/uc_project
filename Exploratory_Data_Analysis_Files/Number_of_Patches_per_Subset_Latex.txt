@@ -1,0 +1,14 @@
+\begin{tabular}{llrrr}
+\toprule
+Experiment & Size & Patches in Training Set & Patches in Validation Set & Patches in Test Set \\
+\midrule
+Spatial & 5\% & 153 & 50 & 55 \\
+Spatial & 10\% & 309 & 99 & 108 \\
+Spatial & 25\% & 794 & 256 & 259 \\
+Spatial & 50\% & 1541 & 531 & 527 \\
+Spatio-Temporal & 5\% & 198 & 68 & 67 \\
+Spatio-Temporal & 10\% & 399 & 138 & 135 \\
+Spatio-Temporal & 25\% & 999 & 326 & 331 \\
+Spatio-Temporal & 50\% & 2001 & 659 & 654 \\
+\bottomrule
+\end{tabular}

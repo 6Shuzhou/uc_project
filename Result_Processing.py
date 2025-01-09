@@ -12,7 +12,7 @@ validation_settings = []
 validation_sizes = []
 validation_experiments = []
 
-for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]):
+for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]): # Perform Validation Result Processing for Each Subset 
     for size in [5,10,25,50]:
         for setting in [1,2,3]:
             current_path = f"Transformed_Selected_Sen4AgriNet_Dataset_Results/Transformation_Setting_{setting}/{size}%/Experiment_{e_i+2}/Fold_1/Validation_Results/"
@@ -27,19 +27,19 @@ for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]):
             if aAcc != '':
                 validation_overall_accuracies.append(float(aAcc))
 
-                with open(current_path + "Accuracies.txt", "r") as Accs_file:   
+                with open(current_path + "Accuracies.txt", "r") as Accs_file: # Calculate Weighted Accuracy according to Accuracy of each class
                     Accs = [float(Acc) for Acc in Accs_file]
                     wAccs = sum([(Accs[i]*counts[i])/sum(counts) for i in range(len(Accs))])
 
                     validation_weighted_accuracies.append(np.mean(np.array(wAccs)))
                 
-                with open(current_path + "F1_Scores.txt", "r") as F1s_file:   
+                with open(current_path + "F1_Scores.txt", "r") as F1s_file: # Calculate Weighted F1 according to F1 of each class
                     F1s = [float(F1) for F1 in F1s_file]
                     wF1s = sum([(F1s[i]*counts[i])/sum(counts) for i in range(len(F1s))])
                     
                     validation_weighted_f1s.append(np.mean(np.array(wF1s)))
                 
-                with open(current_path + "Precisions.txt", "r") as Precs_file:   
+                with open(current_path + "Precisions.txt", "r") as Precs_file: # Calculate Weighted Precision according to Precision of each class  
                     Precs = [float(Prec) for Prec in Precs_file]
                     wPrecs = sum([(Precs[i]*counts[i])/sum(counts) for i in range(len(Precs))])
                     
@@ -73,7 +73,7 @@ test_settings = []
 test_sizes = []
 test_experiments = []
 
-for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]):
+for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]): # Perform Test Result Processing for Each Subset 
     for size in [5,10,25,50]:
         for setting in [1,2,3]:
             current_path = f"Transformed_Selected_Sen4AgriNet_Dataset_Results/Transformation_Setting_{setting}/{size}%/Experiment_{e_i+2}/Fold_1/Test_Results/"
@@ -88,19 +88,19 @@ for e_i, experiment in enumerate(["Spatial","Spatio-Temporal"]):
             if aAcc != '':
                 test_overall_accuracies.append(float(aAcc))
 
-                with open(current_path + "Accuracies.txt", "r") as Accs_file:   
+                with open(current_path + "Accuracies.txt", "r") as Accs_file: # Calculate Weighted Accuracy according to Accuracy of each class
                     Accs = [float(Acc) for Acc in Accs_file]
                     wAccs = sum([(Accs[i]*counts[i])/sum(counts) for i in range(len(Accs))])
 
                     test_weighted_accuracies.append(np.mean(np.array(wAccs)))
                 
-                with open(current_path + "F1_Scores.txt", "r") as F1s_file:   
+                with open(current_path + "F1_Scores.txt", "r") as F1s_file: # Calculate Weighted F1 according to F1 of each class   
                     F1s = [float(F1) for F1 in F1s_file]
                     wF1s = sum([(F1s[i]*counts[i])/sum(counts) for i in range(len(F1s))])
                     
                     test_weighted_f1s.append(np.mean(np.array(wF1s)))
                 
-                with open(current_path + "Precisions.txt", "r") as Precs_file:   
+                with open(current_path + "Precisions.txt", "r") as Precs_file: # Calculate Weighted Precision according to Precision of each class     
                     Precs = [float(Prec) for Prec in Precs_file]
                     wPrecs = sum([(Precs[i]*counts[i])/sum(counts) for i in range(len(Precs))])
                     
