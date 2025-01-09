@@ -1,5 +1,7 @@
 ## UC Project: Crop classification with *Sen4AgriNet* using Earth Observation Foundation Model *Prithvi*
 
+In this project we applied *Prithvi* using the [Prithvi Framework](https://github.com/NASA-IMPACT/hls-foundation-os/tree/main) to *Sen4AgriNet* based on the [Baseline Experiments](https://github.com/Orion-AI-Lab/S4A-Models) in the [Sen4AgriNet Paper](https://ieeexplore.ieee.org/document/9749916).
+
 ### Instructions
 1. Retrieve *Sen4AgriNet* from any of these sources: [Dropbox](https://www.dropbox.com/scl/fo/ne0dpq72gi3ayhqj0hg60/h?dl=0&rlkey=b0148zl6yja7ph26bpfms6knt), [Google Drive](https://drive.google.com/drive/folders/1-qKhlaMUPPI7Th7xTE2vIXY2nIowrSiC?usp=sharing) or [HuggingFace Hub](https://huggingface.co/datasets/paren8esis/S4A), and move it into map *Full_Sen4AgriNet_Dataset* (or a map of your choosing)
 2. Run *Data_Frame_Creation.py* to create a Data Frame of the entire Dataset with the respective labeling. The resulting Data Frame will be stored in the map *Dataframes* (Adjust Path(s) to Relative Path or different Absolute Path first).
@@ -8,11 +10,11 @@
 5. Run *File_Selection.py* for a specific subset to move files from *Full_Sen4AgriNet_Dataset* to *Selected_Sen4AgriNet_Dataset* (Adjust Path(s) to Relative Path or different Absolute Path first).
 6. Run *NETCDF4_File_Conversion.py* to perform transformation of the files of a subset in *Selected_Sen4AgriNet_Dataset*. Depending on the transformation setting, the transformed files are either moved into *Transformed_Selected_Sen4AgriNet_Dataset_1*, *Transformed_Selected_Sen4AgriNet_Dataset_2* or *Transformed_Selected_Sen4AgriNet_Dataset_3* (Adjust Path(s) to Relative Path or different Absolute Path first).
 7. (Optional, can already be found in *Transformed_Selected_Sen4AgriNet_Dataset_Info*) Run *Means_n_Standard_Deviations_Computation.py*, *Class_Weight_Computation.py*, and *Class_Count_Retrieval.py* to retrieve necessary statics across the transformed files of a specific subset and save them in *Transformed_Selected_Sen4AgriNet_Dataset_Info* (Adjust Path(s) to Relative Path or different Absolute Path first).
-8. Follow instructions in the [Prithvi Framework](https://github.com/NASA-IMPACT/hls-foundation-os/tree/main) to set it up (Used Venv instead of Conda).
+8. Follow instructions in the [Prithvi Framework](https://github.com/NASA-IMPACT/hls-foundation-os/tree/main) to set it up (Used Venv instead of Conda and an adjusted *geospatial_pipelines.py* to handle .npy files, can be found in map *geospatial_fm* of this repository).
 9. Move Config file(s) of subset to use for Training/Testing from *Project_Prithvi_Configs* to *hls-foundation-os* folder.
 10. Move corresponding transformed data of subset from *Transformed_Selected_Sen4AgriNet_Dataset_{setting}* to the appropriate folder in *hls-foundation-os* folder (See Config File(s) for expected folder).
 11. Move Pre-Trained Weights from *Pretrained_Prithvi_Weights* to the appropriate folder in *hls-foundation-os* folder (See Config File(s) for expected folder).
 12. Run training/testing according to instruction in the [Prithvi Framework](https://github.com/NASA-IMPACT/hls-foundation-os/tree/main).
-13. (Optional, there are already results in *Transformed_Selected_Sen4AgriNet_Dataset_Results*) Copy results retrieved from the training/testing to the corresponding files of a subset in *Transformed_Selected_Sen4AgriNet_Dataset_Results*.
+13. (Optional, there are already results in *Transformed_Selected_Sen4AgriNet_Dataset_Results*) Copy results retrieved from the training/testing to the corresponding files of a subset in *Transformed_Selected_Sen4AgriNet_Dataset_Results* (Raw output of the results can be found in map *Results*).
 14. (Optional, can already be found in *Processed_Results*) Run *Result_Processing.py* to process the results into the same metrics used in the experiments of the [Original Sen4AgriNet Paper](https://ieeexplore.ieee.org/document/9749916) / [Sen4AgriNet Experiment Repository](https://github.com/Orion-AI-Lab/S4A-Models) and save them to *Processed_Results*.
 15. (Optional, can already be found in *Exploratory_Data_Analysis_Files*) Run *Exploratory_Data_Analysis.py* to obtain files that give a further insight into the data and save them to *Exploratory_Data_Analysis_Files*.
