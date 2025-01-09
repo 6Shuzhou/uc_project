@@ -18,3 +18,5 @@ In this project we applied *Prithvi* using the [Prithvi Framework](https://githu
 13. (Optional, there are already results in *Transformed_Selected_Sen4AgriNet_Dataset_Results*) Copy results retrieved from the training/testing to the corresponding files of a subset in *Transformed_Selected_Sen4AgriNet_Dataset_Results* (Raw output of the results can be found in map *Results*).
 14. (Optional, can already be found in *Processed_Results*) Run *Result_Processing.py* to process the results into the same metrics used in the experiments of the [Original Sen4AgriNet Paper](https://ieeexplore.ieee.org/document/9749916) / [Sen4AgriNet Experiment Repository](https://github.com/Orion-AI-Lab/S4A-Models) and save them to *Processed_Results*.
 15. (Optional, can already be found in *Exploratory_Data_Analysis_Files*) Run *Exploratory_Data_Analysis.py* to obtain files that give a further insight into the data and save them to *Exploratory_Data_Analysis_Files*.
+
+The various transformed subsets of *Sen4AgriNet* can also be found on [Dropbox](https://www.dropbox.com/scl/fo/3fn7ecd2ufpm94bo4z3a6/AFgSCSwXth31w__MjYT6a6M?rlkey=irjutoxq0t0vjk6656n0j5zyf&st=io8x3i1f&dl=0).
