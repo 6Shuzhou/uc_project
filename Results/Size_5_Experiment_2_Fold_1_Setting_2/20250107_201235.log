@@ -1,0 +1,1351 @@
+2025-01-07 20:12:35,335 - mmseg - INFO - Multi-processing start method is `None`
+2025-01-07 20:12:35,337 - mmseg - INFO - OpenCV num_threads is `16
+2025-01-07 20:12:35,653 - mmseg - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.9.21 (main, Dec 11 2024, 16:24:11) [GCC 11.2.0]
+CUDA available: True
+GPU 0: NVIDIA GeForce RTX 4090
+CUDA_HOME: /usr/local/cuda
+NVCC: Cuda compilation tools, release 12.3, V12.3.107
+GCC: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+PyTorch: 1.11.0+cu115
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.5.2 (Git Hash a9302535553c73243c632ad3c4c80beec3d19a1e)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.5
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.3.2
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.5, CUDNN_VERSION=8.3.2, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.11.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=OFF, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+TorchVision: 0.12.0+cu115
+OpenCV: 4.10.0
+MMCV: 1.6.2
+MMCV Compiler: GCC 9.3
+MMCV CUDA Compiler: 11.5
+MMSegmentation: 0.30.0+
+------------------------------------------------------------
+
+2025-01-07 20:12:35,653 - mmseg - INFO - Distributed training: False
+2025-01-07 20:12:37,495 - mmseg - INFO - Config:
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = None
+resume_from = None
+cudnn_benchmark = True
+custom_imports = dict(imports=['geospatial_fm'])
+num_frames = 6
+img_size = 366
+pretrained_weights_path = '/home/featurize/work/hls-foundation-os/Current_Pretrained_Prithvi_Weights/Prithvi_EO_V1_100M.pt'
+num_layers = 6
+patch_size = 61
+embed_dim = 768
+num_heads = 8
+tubelet_size = 1
+max_epochs = 10
+eval_epoch_interval = 1
+loss_weights_multi = [
+    97.09133094283906, 1.2254172042743583, 18.17300100015792,
+    0.15336231150597152, 11.860653872085683, 1.075880283747619,
+    0.6103063022291894, 2.1777211460976442, 6.302796009091822,
+    55.000697002887584, 3.228138828694256
+]
+loss_func = dict(
+    type='CrossEntropyLoss',
+    use_sigmoid=False,
+    class_weight=[
+        97.09133094283906, 1.2254172042743583, 18.17300100015792,
+        0.15336231150597152, 11.860653872085683, 1.075880283747619,
+        0.6103063022291894, 2.1777211460976442, 6.302796009091822,
+        55.000697002887584, 3.228138828694256
+    ],
+    avg_non_ignore=True)
+output_embed_dim = 4608
+experiment = 'Size_5_Experiment_2_Fold_1_Setting_2'
+project_dir = '/home/featurize/Results'
+work_dir = '/home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2'
+save_path = '/home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2'
+dataset_type = 'GeospatialDataset'
+data_root = '/home/featurize/Dataset_2_5_Experiment_2Fold_1'
+img_norm_cfg = dict(
+    means=[
+        1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+        1055.6929931640625, 1035.22021484375, 1152.88525390625,
+        860.0780029296875, 903.6128540039062, 921.4554443359375,
+        951.9763793945312, 975.3358764648438, 1100.1956787109375,
+        1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+        1031.0091552734375, 972.9629516601562, 1075.439208984375,
+        2042.9462890625, 2246.465087890625, 2475.72021484375,
+        2760.988037109375, 2997.870849609375, 2935.36572265625,
+        2928.08740234375, 2846.848876953125, 2599.95263671875,
+        2371.067626953125, 2192.933837890625, 2217.760009765625,
+        1577.840087890625, 1782.511474609375, 1906.4468994140625,
+        1995.9678955078125, 2032.442138671875, 2260.21435546875
+    ],
+    stds=[
+        86.97515869140625, 81.87934875488281, 187.09947204589844,
+        215.2753448486328, 277.0019226074219, 457.9858093261719,
+        143.9781036376953, 112.9113998413086, 118.0002670288086,
+        138.5314483642578, 179.52352905273438, 138.0922393798828, 129.71875,
+        127.41870880126953, 204.29367065429688, 234.64990234375,
+        305.0632629394531, 505.2449645996094, 242.3201141357422,
+        185.57101440429688, 186.90908813476562, 162.7401885986328,
+        168.4741668701172, 161.7404327392578, 147.41851806640625,
+        156.9661102294922, 229.9902801513672, 263.9158630371094,
+        315.09857177734375, 496.5655212402344, 179.65341186523438,
+        156.92869567871094, 138.79598999023438, 145.9631805419922,
+        175.92144775390625, 153.322509765625
+    ])
+bands = [0, 1, 2, 3, 4, 5]
+tile_size = 366
+crop_size = (366, 366)
+train_pipeline = [
+    dict(type='LoadGeospatialImageFromFile', to_float32=True),
+    dict(type='LoadGeospatialAnnotations', reduce_zero_label=True),
+    dict(type='RandomFlip', prob=0.5),
+    dict(type='ToTensor', keys=['img', 'gt_semantic_seg']),
+    dict(type='TorchPermute', keys=['img'], order=(2, 0, 1)),
+    dict(
+        type='TorchNormalize',
+        means=[
+            1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+            1055.6929931640625, 1035.22021484375, 1152.88525390625,
+            860.0780029296875, 903.6128540039062, 921.4554443359375,
+            951.9763793945312, 975.3358764648438, 1100.1956787109375,
+            1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+            1031.0091552734375, 972.9629516601562, 1075.439208984375,
+            2042.9462890625, 2246.465087890625, 2475.72021484375,
+            2760.988037109375, 2997.870849609375, 2935.36572265625,
+            2928.08740234375, 2846.848876953125, 2599.95263671875,
+            2371.067626953125, 2192.933837890625, 2217.760009765625,
+            1577.840087890625, 1782.511474609375, 1906.4468994140625,
+            1995.9678955078125, 2032.442138671875, 2260.21435546875
+        ],
+        stds=[
+            86.97515869140625, 81.87934875488281, 187.09947204589844,
+            215.2753448486328, 277.0019226074219, 457.9858093261719,
+            143.9781036376953, 112.9113998413086, 118.0002670288086,
+            138.5314483642578, 179.52352905273438, 138.0922393798828,
+            129.71875, 127.41870880126953, 204.29367065429688, 234.64990234375,
+            305.0632629394531, 505.2449645996094, 242.3201141357422,
+            185.57101440429688, 186.90908813476562, 162.7401885986328,
+            168.4741668701172, 161.7404327392578, 147.41851806640625,
+            156.9661102294922, 229.9902801513672, 263.9158630371094,
+            315.09857177734375, 496.5655212402344, 179.65341186523438,
+            156.92869567871094, 138.79598999023438, 145.9631805419922,
+            175.92144775390625, 153.322509765625
+        ]),
+    dict(type='TorchRandomCrop', crop_size=(366, 366)),
+    dict(type='Reshape', keys=['img'], new_shape=(6, 6, 366, 366)),
+    dict(type='Reshape', keys=['gt_semantic_seg'], new_shape=(1, 366, 366)),
+    dict(
+        type='CastTensor',
+        keys=['gt_semantic_seg'],
+        new_type='torch.LongTensor'),
+    dict(type='Collect', keys=['img', 'gt_semantic_seg'])
+]
+test_pipeline = [
+    dict(type='LoadGeospatialImageFromFile', to_float32=True),
+    dict(type='ToTensor', keys=['img']),
+    dict(type='TorchPermute', keys=['img'], order=(2, 0, 1)),
+    dict(
+        type='TorchNormalize',
+        means=[
+            1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+            1055.6929931640625, 1035.22021484375, 1152.88525390625,
+            860.0780029296875, 903.6128540039062, 921.4554443359375,
+            951.9763793945312, 975.3358764648438, 1100.1956787109375,
+            1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+            1031.0091552734375, 972.9629516601562, 1075.439208984375,
+            2042.9462890625, 2246.465087890625, 2475.72021484375,
+            2760.988037109375, 2997.870849609375, 2935.36572265625,
+            2928.08740234375, 2846.848876953125, 2599.95263671875,
+            2371.067626953125, 2192.933837890625, 2217.760009765625,
+            1577.840087890625, 1782.511474609375, 1906.4468994140625,
+            1995.9678955078125, 2032.442138671875, 2260.21435546875
+        ],
+        stds=[
+            86.97515869140625, 81.87934875488281, 187.09947204589844,
+            215.2753448486328, 277.0019226074219, 457.9858093261719,
+            143.9781036376953, 112.9113998413086, 118.0002670288086,
+            138.5314483642578, 179.52352905273438, 138.0922393798828,
+            129.71875, 127.41870880126953, 204.29367065429688, 234.64990234375,
+            305.0632629394531, 505.2449645996094, 242.3201141357422,
+            185.57101440429688, 186.90908813476562, 162.7401885986328,
+            168.4741668701172, 161.7404327392578, 147.41851806640625,
+            156.9661102294922, 229.9902801513672, 263.9158630371094,
+            315.09857177734375, 496.5655212402344, 179.65341186523438,
+            156.92869567871094, 138.79598999023438, 145.9631805419922,
+            175.92144775390625, 153.322509765625
+        ]),
+    dict(
+        type='Reshape',
+        keys=['img'],
+        new_shape=(6, 6, -1, -1),
+        look_up=dict({
+            '2': 1,
+            '3': 2
+        })),
+    dict(type='CastTensor', keys=['img'], new_type='torch.FloatTensor'),
+    dict(
+        type='CollectTestList',
+        keys=['img'],
+        meta_keys=[
+            'img_info', 'seg_fields', 'img_prefix', 'seg_prefix', 'filename',
+            'ori_filename', 'img', 'img_shape', 'ori_shape', 'pad_shape',
+            'scale_factor', 'img_norm_cfg'
+        ])
+]
+CLASSES = ('Wheat', 'Maize', 'Sorghum', 'Barley', 'Rye', 'Oats', 'Grapes',
+           'Rapeseed', 'Sunflower', 'Potatoes', 'Peas')
+dataset = 'GeospatialDataset'
+data = dict(
+    samples_per_gpu=4,
+    workers_per_gpu=3,
+    train=dict(
+        type='GeospatialDataset',
+        CLASSES=('Wheat', 'Maize', 'Sorghum', 'Barley', 'Rye', 'Oats',
+                 'Grapes', 'Rapeseed', 'Sunflower', 'Potatoes', 'Peas'),
+        reduce_zero_label=True,
+        data_root='/home/featurize/Dataset_2_5_Experiment_2Fold_1',
+        img_dir='Training_Set',
+        ann_dir='Training_Set',
+        pipeline=[
+            dict(type='LoadGeospatialImageFromFile', to_float32=True),
+            dict(type='LoadGeospatialAnnotations', reduce_zero_label=True),
+            dict(type='RandomFlip', prob=0.5),
+            dict(type='ToTensor', keys=['img', 'gt_semantic_seg']),
+            dict(type='TorchPermute', keys=['img'], order=(2, 0, 1)),
+            dict(
+                type='TorchNormalize',
+                means=[
+                    1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+                    1055.6929931640625, 1035.22021484375, 1152.88525390625,
+                    860.0780029296875, 903.6128540039062, 921.4554443359375,
+                    951.9763793945312, 975.3358764648438, 1100.1956787109375,
+                    1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+                    1031.0091552734375, 972.9629516601562, 1075.439208984375,
+                    2042.9462890625, 2246.465087890625, 2475.72021484375,
+                    2760.988037109375, 2997.870849609375, 2935.36572265625,
+                    2928.08740234375, 2846.848876953125, 2599.95263671875,
+                    2371.067626953125, 2192.933837890625, 2217.760009765625,
+                    1577.840087890625, 1782.511474609375, 1906.4468994140625,
+                    1995.9678955078125, 2032.442138671875, 2260.21435546875
+                ],
+                stds=[
+                    86.97515869140625, 81.87934875488281, 187.09947204589844,
+                    215.2753448486328, 277.0019226074219, 457.9858093261719,
+                    143.9781036376953, 112.9113998413086, 118.0002670288086,
+                    138.5314483642578, 179.52352905273438, 138.0922393798828,
+                    129.71875, 127.41870880126953, 204.29367065429688,
+                    234.64990234375, 305.0632629394531, 505.2449645996094,
+                    242.3201141357422, 185.57101440429688, 186.90908813476562,
+                    162.7401885986328, 168.4741668701172, 161.7404327392578,
+                    147.41851806640625, 156.9661102294922, 229.9902801513672,
+                    263.9158630371094, 315.09857177734375, 496.5655212402344,
+                    179.65341186523438, 156.92869567871094, 138.79598999023438,
+                    145.9631805419922, 175.92144775390625, 153.322509765625
+                ]),
+            dict(type='TorchRandomCrop', crop_size=(366, 366)),
+            dict(type='Reshape', keys=['img'], new_shape=(6, 6, 366, 366)),
+            dict(
+                type='Reshape',
+                keys=['gt_semantic_seg'],
+                new_shape=(1, 366, 366)),
+            dict(
+                type='CastTensor',
+                keys=['gt_semantic_seg'],
+                new_type='torch.LongTensor'),
+            dict(type='Collect', keys=['img', 'gt_semantic_seg'])
+        ],
+        img_suffix='_image.npy',
+        seg_map_suffix='_labels.npy'),
+    val=dict(
+        type='GeospatialDataset',
+        CLASSES=('Wheat', 'Maize', 'Sorghum', 'Barley', 'Rye', 'Oats',
+                 'Grapes', 'Rapeseed', 'Sunflower', 'Potatoes', 'Peas'),
+        reduce_zero_label=True,
+        data_root='/home/featurize/Dataset_2_5_Experiment_2Fold_1',
+        img_dir='Validation_Set',
+        ann_dir='Validation_Set',
+        pipeline=[
+            dict(type='LoadGeospatialImageFromFile', to_float32=True),
+            dict(type='ToTensor', keys=['img']),
+            dict(type='TorchPermute', keys=['img'], order=(2, 0, 1)),
+            dict(
+                type='TorchNormalize',
+                means=[
+                    1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+                    1055.6929931640625, 1035.22021484375, 1152.88525390625,
+                    860.0780029296875, 903.6128540039062, 921.4554443359375,
+                    951.9763793945312, 975.3358764648438, 1100.1956787109375,
+                    1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+                    1031.0091552734375, 972.9629516601562, 1075.439208984375,
+                    2042.9462890625, 2246.465087890625, 2475.72021484375,
+                    2760.988037109375, 2997.870849609375, 2935.36572265625,
+                    2928.08740234375, 2846.848876953125, 2599.95263671875,
+                    2371.067626953125, 2192.933837890625, 2217.760009765625,
+                    1577.840087890625, 1782.511474609375, 1906.4468994140625,
+                    1995.9678955078125, 2032.442138671875, 2260.21435546875
+                ],
+                stds=[
+                    86.97515869140625, 81.87934875488281, 187.09947204589844,
+                    215.2753448486328, 277.0019226074219, 457.9858093261719,
+                    143.9781036376953, 112.9113998413086, 118.0002670288086,
+                    138.5314483642578, 179.52352905273438, 138.0922393798828,
+                    129.71875, 127.41870880126953, 204.29367065429688,
+                    234.64990234375, 305.0632629394531, 505.2449645996094,
+                    242.3201141357422, 185.57101440429688, 186.90908813476562,
+                    162.7401885986328, 168.4741668701172, 161.7404327392578,
+                    147.41851806640625, 156.9661102294922, 229.9902801513672,
+                    263.9158630371094, 315.09857177734375, 496.5655212402344,
+                    179.65341186523438, 156.92869567871094, 138.79598999023438,
+                    145.9631805419922, 175.92144775390625, 153.322509765625
+                ]),
+            dict(
+                type='Reshape',
+                keys=['img'],
+                new_shape=(6, 6, -1, -1),
+                look_up=dict({
+                    '2': 1,
+                    '3': 2
+                })),
+            dict(
+                type='CastTensor', keys=['img'], new_type='torch.FloatTensor'),
+            dict(
+                type='CollectTestList',
+                keys=['img'],
+                meta_keys=[
+                    'img_info', 'seg_fields', 'img_prefix', 'seg_prefix',
+                    'filename', 'ori_filename', 'img', 'img_shape',
+                    'ori_shape', 'pad_shape', 'scale_factor', 'img_norm_cfg'
+                ])
+        ],
+        img_suffix='_image.npy',
+        seg_map_suffix='_labels.npy'),
+    test=dict(
+        type='GeospatialDataset',
+        CLASSES=('Wheat', 'Maize', 'Sorghum', 'Barley', 'Rye', 'Oats',
+                 'Grapes', 'Rapeseed', 'Sunflower', 'Potatoes', 'Peas'),
+        reduce_zero_label=True,
+        data_root='/home/featurize/Dataset_2_5_Experiment_2Fold_1',
+        img_dir='Test_Set',
+        ann_dir='Test_Set',
+        pipeline=[
+            dict(type='LoadGeospatialImageFromFile', to_float32=True),
+            dict(type='ToTensor', keys=['img']),
+            dict(type='TorchPermute', keys=['img'], order=(2, 0, 1)),
+            dict(
+                type='TorchNormalize',
+                means=[
+                    1143.1483154296875, 1126.531494140625, 1076.4971923828125,
+                    1055.6929931640625, 1035.22021484375, 1152.88525390625,
+                    860.0780029296875, 903.6128540039062, 921.4554443359375,
+                    951.9763793945312, 975.3358764648438, 1100.1956787109375,
+                    1155.04541015625, 1153.7811279296875, 1064.8714599609375,
+                    1031.0091552734375, 972.9629516601562, 1075.439208984375,
+                    2042.9462890625, 2246.465087890625, 2475.72021484375,
+                    2760.988037109375, 2997.870849609375, 2935.36572265625,
+                    2928.08740234375, 2846.848876953125, 2599.95263671875,
+                    2371.067626953125, 2192.933837890625, 2217.760009765625,
+                    1577.840087890625, 1782.511474609375, 1906.4468994140625,
+                    1995.9678955078125, 2032.442138671875, 2260.21435546875
+                ],
+                stds=[
+                    86.97515869140625, 81.87934875488281, 187.09947204589844,
+                    215.2753448486328, 277.0019226074219, 457.9858093261719,
+                    143.9781036376953, 112.9113998413086, 118.0002670288086,
+                    138.5314483642578, 179.52352905273438, 138.0922393798828,
+                    129.71875, 127.41870880126953, 204.29367065429688,
+                    234.64990234375, 305.0632629394531, 505.2449645996094,
+                    242.3201141357422, 185.57101440429688, 186.90908813476562,
+                    162.7401885986328, 168.4741668701172, 161.7404327392578,
+                    147.41851806640625, 156.9661102294922, 229.9902801513672,
+                    263.9158630371094, 315.09857177734375, 496.5655212402344,
+                    179.65341186523438, 156.92869567871094, 138.79598999023438,
+                    145.9631805419922, 175.92144775390625, 153.322509765625
+                ]),
+            dict(
+                type='Reshape',
+                keys=['img'],
+                new_shape=(6, 6, -1, -1),
+                look_up=dict({
+                    '2': 1,
+                    '3': 2
+                })),
+            dict(
+                type='CastTensor', keys=['img'], new_type='torch.FloatTensor'),
+            dict(
+                type='CollectTestList',
+                keys=['img'],
+                meta_keys=[
+                    'img_info', 'seg_fields', 'img_prefix', 'seg_prefix',
+                    'filename', 'ori_filename', 'img', 'img_shape',
+                    'ori_shape', 'pad_shape', 'scale_factor', 'img_norm_cfg'
+                ])
+        ],
+        img_suffix='_image.npy',
+        seg_map_suffix='_labels.npy'))
+optimizer = dict(
+    type='Adam', lr=1.5e-05, betas=(0.9, 0.999), weight_decay=0.05)
+optimizer_config = dict(grad_clip=None)
+lr_config = dict(
+    policy='poly',
+    warmup='linear',
+    warmup_iters=1500,
+    warmup_ratio=1e-06,
+    power=1.0,
+    min_lr=0.0,
+    by_epoch=False)
+log_config = dict(
+    interval=10,
+    hooks=[dict(type='TextLoggerHook'),
+           dict(type='TensorboardLoggerHook')])
+checkpoint_config = dict(
+    by_epoch=True,
+    interval=100,
+    out_dir='/home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2')
+evaluation = dict(
+    interval=1,
+    metric=['mIoU', 'mDice', 'mFscore'],
+    pre_eval=True,
+    save_best='mIoU',
+    by_epoch=True)
+reduce_train_set = dict(reduce_train_set=False)
+reduce_factor = dict(reduce_factor=1)
+runner = dict(type='EpochBasedRunner', max_epochs=10)
+workflow = [('train', 1)]
+norm_cfg = dict(type='BN', requires_grad=True)
+model = dict(
+    type='TemporalEncoderDecoder',
+    frozen_backbone=False,
+    backbone=dict(
+        type='TemporalViTEncoder',
+        pretrained=
+        '/home/featurize/work/hls-foundation-os/Current_Pretrained_Prithvi_Weights/Prithvi_EO_V1_100M.pt',
+        img_size=366,
+        patch_size=61,
+        num_frames=6,
+        tubelet_size=1,
+        in_chans=6,
+        embed_dim=768,
+        depth=6,
+        num_heads=8,
+        mlp_ratio=4.0,
+        norm_pix_loss=False),
+    neck=dict(
+        type='ConvTransformerTokensToEmbeddingNeck',
+        embed_dim=4608,
+        output_embed_dim=4608,
+        drop_cls_token=True,
+        Hp=6,
+        Wp=6),
+    decode_head=dict(
+        num_classes=11,
+        in_channels=4608,
+        type='FCNHead',
+        in_index=-1,
+        channels=256,
+        num_convs=1,
+        concat_input=False,
+        dropout_ratio=0.1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        align_corners=False,
+        loss_decode=dict(
+            type='CrossEntropyLoss',
+            use_sigmoid=False,
+            class_weight=[
+                97.09133094283906, 1.2254172042743583, 18.17300100015792,
+                0.15336231150597152, 11.860653872085683, 1.075880283747619,
+                0.6103063022291894, 2.1777211460976442, 6.302796009091822,
+                55.000697002887584, 3.228138828694256
+            ],
+            avg_non_ignore=True)),
+    auxiliary_head=dict(
+        num_classes=11,
+        in_channels=4608,
+        type='FCNHead',
+        in_index=-1,
+        channels=256,
+        num_convs=2,
+        concat_input=False,
+        dropout_ratio=0.1,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        align_corners=False,
+        loss_decode=dict(
+            type='CrossEntropyLoss',
+            use_sigmoid=False,
+            class_weight=[
+                97.09133094283906, 1.2254172042743583, 18.17300100015792,
+                0.15336231150597152, 11.860653872085683, 1.075880283747619,
+                0.6103063022291894, 2.1777211460976442, 6.302796009091822,
+                55.000697002887584, 3.228138828694256
+            ],
+            avg_non_ignore=True)),
+    train_cfg=dict(),
+    test_cfg=dict(mode='slide', stride=(183, 183), crop_size=(366, 366)))
+auto_resume = False
+gpu_ids = range(0, 1)
+
+2025-01-07 20:12:37,497 - mmseg - INFO - Set random seed to 1808911939, deterministic: False
+2025-01-07 20:12:42,348 - mmseg - INFO - initialize FCNHead with init_cfg {'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+2025-01-07 20:12:42,349 - mmseg - INFO - initialize FCNHead with init_cfg {'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+Name of parameter - Initialization information
+
+backbone.cls_token - torch.Size([1, 1, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.pos_embed - torch.Size([1, 217, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.patch_embed.proj.weight - torch.Size([768, 6, 1, 61, 61]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.patch_embed.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.0.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.1.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.2.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.3.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.4.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.norm1.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.norm1.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.attn.qkv.weight - torch.Size([2304, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.attn.qkv.bias - torch.Size([2304]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.attn.proj.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.attn.proj.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.norm2.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.norm2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.mlp.fc1.weight - torch.Size([3072, 768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.mlp.fc1.bias - torch.Size([3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.mlp.fc2.weight - torch.Size([768, 3072]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.blocks.5.mlp.fc2.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+backbone.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.0.weight - torch.Size([4608, 4608, 2, 2]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.0.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.1.ln.weight - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.1.ln.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.3.weight - torch.Size([4608, 4608, 2, 2]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn1.3.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.0.weight - torch.Size([4608, 4608, 2, 2]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.0.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.1.ln.weight - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.1.ln.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.3.weight - torch.Size([4608, 4608, 2, 2]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+neck.fpn2.3.bias - torch.Size([4608]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+decode_head.conv_seg.weight - torch.Size([11, 256, 1, 1]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+decode_head.conv_seg.bias - torch.Size([11]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+decode_head.convs.0.conv.weight - torch.Size([256, 4608, 3, 3]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+decode_head.convs.0.bn.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+decode_head.convs.0.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.conv_seg.weight - torch.Size([11, 256, 1, 1]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+auxiliary_head.conv_seg.bias - torch.Size([11]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+auxiliary_head.convs.0.conv.weight - torch.Size([256, 4608, 3, 3]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.convs.0.bn.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.convs.0.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.convs.1.conv.weight - torch.Size([256, 256, 3, 3]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.convs.1.bn.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+
+auxiliary_head.convs.1.bn.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of TemporalEncoderDecoder  
+2025-01-07 20:12:42,352 - mmseg - INFO - TemporalEncoderDecoder(
+  (backbone): TemporalViTEncoder(
+    (patch_embed): PatchEmbed(
+      (proj): Conv3d(6, 768, kernel_size=(1, 61, 61), stride=(1, 61, 61))
+      (norm): Identity()
+    )
+    (blocks): ModuleList(
+      (0): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (1): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (2): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (3): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (4): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (5): Block(
+        (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (qkv): Linear(in_features=768, out_features=2304, bias=True)
+          (attn_drop): Dropout(p=0.0, inplace=False)
+          (proj): Linear(in_features=768, out_features=768, bias=True)
+          (proj_drop): Dropout(p=0.0, inplace=False)
+        )
+        (drop_path): Identity()
+        (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): Mlp(
+          (fc1): Linear(in_features=768, out_features=3072, bias=True)
+          (act): GELU()
+          (fc2): Linear(in_features=3072, out_features=768, bias=True)
+          (drop): Dropout(p=0.0, inplace=False)
+        )
+      )
+    )
+    (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (neck): ConvTransformerTokensToEmbeddingNeck(
+    (fpn1): Sequential(
+      (0): ConvTranspose2d(4608, 4608, kernel_size=(2, 2), stride=(2, 2))
+      (1): Norm2d(
+        (ln): LayerNorm((4608,), eps=1e-06, elementwise_affine=True)
+      )
+      (2): GELU()
+      (3): ConvTranspose2d(4608, 4608, kernel_size=(2, 2), stride=(2, 2))
+    )
+    (fpn2): Sequential(
+      (0): ConvTranspose2d(4608, 4608, kernel_size=(2, 2), stride=(2, 2))
+      (1): Norm2d(
+        (ln): LayerNorm((4608,), eps=1e-06, elementwise_affine=True)
+      )
+      (2): GELU()
+      (3): ConvTranspose2d(4608, 4608, kernel_size=(2, 2), stride=(2, 2))
+    )
+  )
+  (decode_head): FCNHead(
+    input_transform=None, ignore_index=255, align_corners=False
+    (loss_decode): CrossEntropyLoss(avg_non_ignore=True)
+    (conv_seg): Conv2d(256, 11, kernel_size=(1, 1), stride=(1, 1))
+    (dropout): Dropout2d(p=0.1, inplace=False)
+    (convs): Sequential(
+      (0): ConvModule(
+        (conv): Conv2d(4608, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (activate): ReLU(inplace=True)
+      )
+    )
+  )
+  init_cfg={'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+  (auxiliary_head): FCNHead(
+    input_transform=None, ignore_index=255, align_corners=False
+    (loss_decode): CrossEntropyLoss(avg_non_ignore=True)
+    (conv_seg): Conv2d(256, 11, kernel_size=(1, 1), stride=(1, 1))
+    (dropout): Dropout2d(p=0.1, inplace=False)
+    (convs): Sequential(
+      (0): ConvModule(
+        (conv): Conv2d(4608, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (activate): ReLU(inplace=True)
+      )
+      (1): ConvModule(
+        (conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (activate): ReLU(inplace=True)
+      )
+    )
+  )
+  init_cfg={'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+)
+2025-01-07 20:12:42,360 - mmseg - INFO - Loaded 153 images
+2025-01-07 20:12:47,551 - mmseg - INFO - Loaded 50 images
+2025-01-07 20:12:47,552 - mmseg - INFO - Start running, host: featurize@featurize, work_dir: /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2
+2025-01-07 20:12:47,552 - mmseg - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_epoch:
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+(VERY_LOW    ) TensorboardLoggerHook              
+ -------------------- 
+2025-01-07 20:12:47,553 - mmseg - INFO - workflow: [('train', 1)], max: 10 epochs
+2025-01-07 20:12:47,553 - mmseg - INFO - Checkpoints will be saved to /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2 by HardDiskBackend.
+2025-01-07 20:13:00,336 - mmseg - INFO - Epoch [1][10/38]	lr: 8.788e-08, eta: 0:07:10, time: 1.164, data_time: 0.272, memory: 15650, decode.loss_ce: 2.2109, decode.acc_seg: 6.2303, aux.loss_ce: 2.2186, aux.acc_seg: 14.3358, loss: 4.4296
+2025-01-07 20:13:04,756 - mmseg - INFO - Epoch [1][20/38]	lr: 1.805e-07, eta: 0:04:49, time: 0.442, data_time: 0.005, memory: 15650, decode.loss_ce: 3.2276, decode.acc_seg: 6.9365, aux.loss_ce: 3.2223, aux.acc_seg: 13.1552, loss: 6.4499
+2025-01-07 20:13:09,192 - mmseg - INFO - Epoch [1][30/38]	lr: 2.679e-07, eta: 0:03:59, time: 0.444, data_time: 0.005, memory: 15650, decode.loss_ce: 2.3151, decode.acc_seg: 5.2264, aux.loss_ce: 2.3219, aux.acc_seg: 16.9016, loss: 4.6370
+2025-01-07 20:13:16,545 - mmseg - INFO - per class results:
+2025-01-07 20:13:16,557 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 |  8.76 |  0.16 |  0.16  |    0.08   |  8.76  |
+|   Maize   | 1.83 |  2.13 |  3.59 |  3.59  |    11.5   |  2.13  |
+|  Sorghum  | 0.15 |  0.38 |  0.29 |  0.29  |    0.24   |  0.38  |
+|   Barley  | 1.86 |  1.88 |  3.64 |  3.64  |   56.99   |  1.88  |
+|    Rye    | 0.08 |  0.73 |  0.16 |  0.16  |    0.09   |  0.73  |
+|    Oats   | 6.6  | 40.69 | 12.38 | 12.38  |    7.3    | 40.69  |
+|   Grapes  | 3.93 |  5.12 |  7.56 |  7.56  |   14.44   |  5.12  |
+|  Rapeseed | 1.92 |  3.21 |  3.76 |  3.76  |    4.55   |  3.21  |
+| Sunflower | 0.4  |  9.89 |  0.8  |  0.8   |    0.42   |  9.89  |
+|  Potatoes | 0.14 |  7.62 |  0.29 |  0.29  |    0.15   |  7.62  |
+|    Peas   | 3.43 | 15.52 |  6.63 |  6.63  |    4.21   | 15.52  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:13:16,557 - mmseg - INFO - Summary:
+2025-01-07 20:13:16,557 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.89 | 1.86 | 8.72 |  3.57 |   3.57  |    9.09    |   8.72  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:13:28,789 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_1.pth.
+2025-01-07 20:13:28,790 - mmseg - INFO - Best mIoU is 0.0186 at 1 epoch.
+2025-01-07 20:13:28,791 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:13:28,791 - mmseg - INFO - Epoch(val) [1][50]	aAcc: 0.0589, mIoU: 0.0186, mAcc: 0.0872, mDice: 0.0357, mFscore: 0.0357, mPrecision: 0.0909, mRecall: 0.0872, IoU.Wheat: 0.0008, IoU.Maize: 0.0183, IoU.Sorghum: 0.0015, IoU.Barley: 0.0186, IoU.Rye: 0.0008, IoU.Oats: 0.0660, IoU.Grapes: 0.0393, IoU.Rapeseed: 0.0192, IoU.Sunflower: 0.0040, IoU.Potatoes: 0.0014, IoU.Peas: 0.0343, Acc.Wheat: 0.0876, Acc.Maize: 0.0213, Acc.Sorghum: 0.0038, Acc.Barley: 0.0188, Acc.Rye: 0.0073, Acc.Oats: 0.4069, Acc.Grapes: 0.0512, Acc.Rapeseed: 0.0321, Acc.Sunflower: 0.0989, Acc.Potatoes: 0.0762, Acc.Peas: 0.1552, Dice.Wheat: 0.0016, Dice.Maize: 0.0359, Dice.Sorghum: 0.0029, Dice.Barley: 0.0364, Dice.Rye: 0.0016, Dice.Oats: 0.1238, Dice.Grapes: 0.0756, Dice.Rapeseed: 0.0376, Dice.Sunflower: 0.0080, Dice.Potatoes: 0.0029, Dice.Peas: 0.0663, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0359, Fscore.Sorghum: 0.0029, Fscore.Barley: 0.0364, Fscore.Rye: 0.0016, Fscore.Oats: 0.1238, Fscore.Grapes: 0.0756, Fscore.Rapeseed: 0.0376, Fscore.Sunflower: 0.0080, Fscore.Potatoes: 0.0029, Fscore.Peas: 0.0663, Precision.Wheat: 0.0008, Precision.Maize: 0.1150, Precision.Sorghum: 0.0024, Precision.Barley: 0.5699, Precision.Rye: 0.0009, Precision.Oats: 0.0730, Precision.Grapes: 0.1444, Precision.Rapeseed: 0.0455, Precision.Sunflower: 0.0042, Precision.Potatoes: 0.0015, Precision.Peas: 0.0421, Recall.Wheat: 0.0876, Recall.Maize: 0.0213, Recall.Sorghum: 0.0038, Recall.Barley: 0.0188, Recall.Rye: 0.0073, Recall.Oats: 0.4069, Recall.Grapes: 0.0512, Recall.Rapeseed: 0.0321, Recall.Sunflower: 0.0989, Recall.Potatoes: 0.0762, Recall.Peas: 0.1552
+2025-01-07 20:13:35,379 - mmseg - INFO - Epoch [2][10/38]	lr: 4.119e-07, eta: 0:03:06, time: 0.651, data_time: 0.217, memory: 15650, decode.loss_ce: 1.8688, decode.acc_seg: 5.2314, aux.loss_ce: 1.8736, aux.acc_seg: 12.9296, loss: 3.7425
+2025-01-07 20:13:39,775 - mmseg - INFO - Epoch [2][20/38]	lr: 4.845e-07, eta: 0:02:54, time: 0.440, data_time: 0.005, memory: 15650, decode.loss_ce: 3.7439, decode.acc_seg: 6.5600, aux.loss_ce: 3.7396, aux.acc_seg: 13.7412, loss: 7.4835
+2025-01-07 20:13:44,161 - mmseg - INFO - Epoch [2][30/38]	lr: 5.519e-07, eta: 0:02:44, time: 0.439, data_time: 0.005, memory: 15650, decode.loss_ce: 4.0359, decode.acc_seg: 7.2902, aux.loss_ce: 4.0346, aux.acc_seg: 11.0238, loss: 8.0705
+2025-01-07 20:13:50,522 - mmseg - INFO - per class results:
+2025-01-07 20:13:50,524 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 |  9.1  |  0.16 |  0.16  |    0.08   |  9.1   |
+|   Maize   | 1.92 |  2.23 |  3.76 |  3.76  |   12.16   |  2.23  |
+|  Sorghum  | 0.15 |  0.38 |  0.3  |  0.3   |    0.25   |  0.38  |
+|   Barley  | 1.82 |  1.85 |  3.58 |  3.58  |   57.54   |  1.85  |
+|    Rye    | 0.08 |  0.78 |  0.16 |  0.16  |    0.09   |  0.78  |
+|    Oats   | 6.63 | 40.57 | 12.43 | 12.43  |    7.34   | 40.57  |
+|   Grapes  | 4.2  |  5.45 |  8.05 |  8.05  |   15.44   |  5.45  |
+|  Rapeseed | 1.9  |  3.13 |  3.73 |  3.73  |    4.63   |  3.13  |
+| Sunflower | 0.4  |  9.52 |  0.81 |  0.81  |    0.42   |  9.52  |
+|  Potatoes | 0.15 |  8.2  |  0.29 |  0.29  |    0.15   |  8.2   |
+|    Peas   | 3.48 | 15.84 |  6.72 |  6.72  |    4.26   | 15.84  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:13:50,524 - mmseg - INFO - Summary:
+2025-01-07 20:13:50,524 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.94 | 1.89 | 8.82 |  3.64 |   3.64  |    9.3     |   8.82  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:13:51,183 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_1.pth was removed
+2025-01-07 20:14:03,460 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_2.pth.
+2025-01-07 20:14:03,460 - mmseg - INFO - Best mIoU is 0.0189 at 2 epoch.
+2025-01-07 20:14:03,461 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:14:03,461 - mmseg - INFO - Epoch(val) [2][50]	aAcc: 0.0594, mIoU: 0.0189, mAcc: 0.0882, mDice: 0.0364, mFscore: 0.0364, mPrecision: 0.0930, mRecall: 0.0882, IoU.Wheat: 0.0008, IoU.Maize: 0.0192, IoU.Sorghum: 0.0015, IoU.Barley: 0.0182, IoU.Rye: 0.0008, IoU.Oats: 0.0663, IoU.Grapes: 0.0420, IoU.Rapeseed: 0.0190, IoU.Sunflower: 0.0040, IoU.Potatoes: 0.0015, IoU.Peas: 0.0348, Acc.Wheat: 0.0910, Acc.Maize: 0.0223, Acc.Sorghum: 0.0038, Acc.Barley: 0.0185, Acc.Rye: 0.0078, Acc.Oats: 0.4057, Acc.Grapes: 0.0545, Acc.Rapeseed: 0.0313, Acc.Sunflower: 0.0952, Acc.Potatoes: 0.0820, Acc.Peas: 0.1584, Dice.Wheat: 0.0016, Dice.Maize: 0.0376, Dice.Sorghum: 0.0030, Dice.Barley: 0.0358, Dice.Rye: 0.0016, Dice.Oats: 0.1243, Dice.Grapes: 0.0805, Dice.Rapeseed: 0.0373, Dice.Sunflower: 0.0081, Dice.Potatoes: 0.0029, Dice.Peas: 0.0672, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0376, Fscore.Sorghum: 0.0030, Fscore.Barley: 0.0358, Fscore.Rye: 0.0016, Fscore.Oats: 0.1243, Fscore.Grapes: 0.0805, Fscore.Rapeseed: 0.0373, Fscore.Sunflower: 0.0081, Fscore.Potatoes: 0.0029, Fscore.Peas: 0.0672, Precision.Wheat: 0.0008, Precision.Maize: 0.1216, Precision.Sorghum: 0.0025, Precision.Barley: 0.5754, Precision.Rye: 0.0009, Precision.Oats: 0.0734, Precision.Grapes: 0.1544, Precision.Rapeseed: 0.0463, Precision.Sunflower: 0.0042, Precision.Potatoes: 0.0015, Precision.Peas: 0.0426, Recall.Wheat: 0.0910, Recall.Maize: 0.0223, Recall.Sorghum: 0.0038, Recall.Barley: 0.0185, Recall.Rye: 0.0078, Recall.Oats: 0.4057, Recall.Grapes: 0.0545, Recall.Rapeseed: 0.0313, Recall.Sunflower: 0.0952, Recall.Potatoes: 0.0820, Recall.Peas: 0.1584
+2025-01-07 20:14:10,153 - mmseg - INFO - Epoch [3][10/38]	lr: 6.599e-07, eta: 0:02:25, time: 0.664, data_time: 0.228, memory: 15650, decode.loss_ce: 2.5404, decode.acc_seg: 6.9041, aux.loss_ce: 2.5290, aux.acc_seg: 13.5206, loss: 5.0694
+2025-01-07 20:14:14,552 - mmseg - INFO - Epoch [3][20/38]	lr: 7.125e-07, eta: 0:02:18, time: 0.440, data_time: 0.005, memory: 15650, decode.loss_ce: 2.7923, decode.acc_seg: 6.3218, aux.loss_ce: 2.7838, aux.acc_seg: 16.8149, loss: 5.5761
+2025-01-07 20:14:18,916 - mmseg - INFO - Epoch [3][30/38]	lr: 7.599e-07, eta: 0:02:12, time: 0.436, data_time: 0.005, memory: 15650, decode.loss_ce: 2.2304, decode.acc_seg: 5.3990, aux.loss_ce: 2.2034, aux.acc_seg: 13.0143, loss: 4.4339
+2025-01-07 20:14:25,378 - mmseg - INFO - per class results:
+2025-01-07 20:14:25,380 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.09 |  10.9 |  0.18 |  0.18  |    0.09   |  10.9  |
+|   Maize   | 1.97 |  2.27 |  3.87 |  3.87  |   12.89   |  2.27  |
+|  Sorghum  | 0.15 |  0.38 |  0.31 |  0.31  |    0.26   |  0.38  |
+|   Barley  | 1.81 |  1.84 |  3.56 |  3.56  |    58.0   |  1.84  |
+|    Rye    | 0.07 |  0.68 |  0.13 |  0.13  |    0.07   |  0.68  |
+|    Oats   | 6.63 | 39.93 | 12.44 | 12.44  |    7.36   | 39.93  |
+|   Grapes  | 4.7  |  6.1  |  8.97 |  8.97  |   16.97   |  6.1   |
+|  Rapeseed | 1.88 |  3.01 |  3.7  |  3.7   |    4.78   |  3.01  |
+| Sunflower | 0.4  |  9.2  |  0.8  |  0.8   |    0.42   |  9.2   |
+|  Potatoes | 0.15 |  8.61 |  0.3  |  0.3   |    0.15   |  8.61  |
+|    Peas   | 3.6  | 16.58 |  6.95 |  6.95  |    4.39   | 16.58  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:14:25,380 - mmseg - INFO - Summary:
+2025-01-07 20:14:25,380 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 6.01 | 1.95 | 9.05 |  3.75 |   3.75  |    9.58    |   9.05  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:14:25,958 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_2.pth was removed
+2025-01-07 20:14:38,431 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_3.pth.
+2025-01-07 20:14:38,432 - mmseg - INFO - Best mIoU is 0.0195 at 3 epoch.
+2025-01-07 20:14:38,432 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:14:38,433 - mmseg - INFO - Epoch(val) [3][50]	aAcc: 0.0601, mIoU: 0.0195, mAcc: 0.0905, mDice: 0.0375, mFscore: 0.0375, mPrecision: 0.0958, mRecall: 0.0905, IoU.Wheat: 0.0009, IoU.Maize: 0.0197, IoU.Sorghum: 0.0015, IoU.Barley: 0.0181, IoU.Rye: 0.0007, IoU.Oats: 0.0663, IoU.Grapes: 0.0470, IoU.Rapeseed: 0.0188, IoU.Sunflower: 0.0040, IoU.Potatoes: 0.0015, IoU.Peas: 0.0360, Acc.Wheat: 0.1090, Acc.Maize: 0.0227, Acc.Sorghum: 0.0038, Acc.Barley: 0.0184, Acc.Rye: 0.0068, Acc.Oats: 0.3993, Acc.Grapes: 0.0610, Acc.Rapeseed: 0.0301, Acc.Sunflower: 0.0920, Acc.Potatoes: 0.0861, Acc.Peas: 0.1658, Dice.Wheat: 0.0018, Dice.Maize: 0.0387, Dice.Sorghum: 0.0031, Dice.Barley: 0.0356, Dice.Rye: 0.0013, Dice.Oats: 0.1244, Dice.Grapes: 0.0897, Dice.Rapeseed: 0.0370, Dice.Sunflower: 0.0080, Dice.Potatoes: 0.0030, Dice.Peas: 0.0695, Fscore.Wheat: 0.0018, Fscore.Maize: 0.0387, Fscore.Sorghum: 0.0031, Fscore.Barley: 0.0356, Fscore.Rye: 0.0013, Fscore.Oats: 0.1244, Fscore.Grapes: 0.0897, Fscore.Rapeseed: 0.0370, Fscore.Sunflower: 0.0080, Fscore.Potatoes: 0.0030, Fscore.Peas: 0.0695, Precision.Wheat: 0.0009, Precision.Maize: 0.1289, Precision.Sorghum: 0.0026, Precision.Barley: 0.5800, Precision.Rye: 0.0007, Precision.Oats: 0.0736, Precision.Grapes: 0.1697, Precision.Rapeseed: 0.0478, Precision.Sunflower: 0.0042, Precision.Potatoes: 0.0015, Precision.Peas: 0.0439, Recall.Wheat: 0.1090, Recall.Maize: 0.0227, Recall.Sorghum: 0.0038, Recall.Barley: 0.0184, Recall.Rye: 0.0068, Recall.Oats: 0.3993, Recall.Grapes: 0.0610, Recall.Rapeseed: 0.0301, Recall.Sunflower: 0.0920, Recall.Potatoes: 0.0861, Recall.Peas: 0.1658
+2025-01-07 20:14:45,062 - mmseg - INFO - Epoch [4][10/38]	lr: 8.319e-07, eta: 0:01:59, time: 0.657, data_time: 0.222, memory: 15650, decode.loss_ce: 2.2622, decode.acc_seg: 7.1261, aux.loss_ce: 2.2643, aux.acc_seg: 11.5745, loss: 4.5265
+2025-01-07 20:14:49,401 - mmseg - INFO - Epoch [4][20/38]	lr: 8.645e-07, eta: 0:01:54, time: 0.434, data_time: 0.005, memory: 15650, decode.loss_ce: 3.2968, decode.acc_seg: 7.2163, aux.loss_ce: 3.2469, aux.acc_seg: 14.3897, loss: 6.5437
+2025-01-07 20:14:53,798 - mmseg - INFO - Epoch [4][30/38]	lr: 8.919e-07, eta: 0:01:48, time: 0.440, data_time: 0.005, memory: 15650, decode.loss_ce: 1.8078, decode.acc_seg: 5.2962, aux.loss_ce: 1.7971, aux.acc_seg: 15.4304, loss: 3.6049
+2025-01-07 20:15:00,187 - mmseg - INFO - per class results:
+2025-01-07 20:15:00,189 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.09 | 12.25 |  0.18 |  0.18  |    0.09   | 12.25  |
+|   Maize   | 2.27 |  2.61 |  4.43 |  4.43  |   14.53   |  2.61  |
+|  Sorghum  | 0.18 |  0.43 |  0.37 |  0.37  |    0.32   |  0.43  |
+|   Barley  | 1.76 |  1.79 |  3.47 |  3.47  |   58.57   |  1.79  |
+|    Rye    | 0.06 |  0.52 |  0.12 |  0.12  |    0.07   |  0.52  |
+|    Oats   | 6.64 | 39.26 | 12.46 | 12.46  |    7.41   | 39.26  |
+|   Grapes  | 5.02 |  6.48 |  9.55 |  9.55  |   18.16   |  6.48  |
+|  Rapeseed | 1.95 |  3.07 |  3.82 |  3.82  |    5.05   |  3.07  |
+| Sunflower | 0.42 |  9.54 |  0.84 |  0.84  |    0.44   |  9.54  |
+|  Potatoes | 0.16 |  9.49 |  0.31 |  0.31  |    0.16   |  9.49  |
+|    Peas   | 3.6  | 16.18 |  6.96 |  6.96  |    4.43   | 16.18  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:15:00,189 - mmseg - INFO - Summary:
+2025-01-07 20:15:00,189 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 6.03 | 2.01 | 9.24 |  3.86 |   3.86  |    9.93    |   9.24  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:15:00,758 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_3.pth was removed
+2025-01-07 20:15:13,231 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_4.pth.
+2025-01-07 20:15:13,232 - mmseg - INFO - Best mIoU is 0.0201 at 4 epoch.
+2025-01-07 20:15:13,232 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:15:13,232 - mmseg - INFO - Epoch(val) [4][50]	aAcc: 0.0603, mIoU: 0.0201, mAcc: 0.0924, mDice: 0.0386, mFscore: 0.0386, mPrecision: 0.0993, mRecall: 0.0924, IoU.Wheat: 0.0009, IoU.Maize: 0.0227, IoU.Sorghum: 0.0018, IoU.Barley: 0.0176, IoU.Rye: 0.0006, IoU.Oats: 0.0664, IoU.Grapes: 0.0502, IoU.Rapeseed: 0.0195, IoU.Sunflower: 0.0042, IoU.Potatoes: 0.0016, IoU.Peas: 0.0360, Acc.Wheat: 0.1225, Acc.Maize: 0.0261, Acc.Sorghum: 0.0043, Acc.Barley: 0.0179, Acc.Rye: 0.0052, Acc.Oats: 0.3926, Acc.Grapes: 0.0648, Acc.Rapeseed: 0.0307, Acc.Sunflower: 0.0954, Acc.Potatoes: 0.0949, Acc.Peas: 0.1618, Dice.Wheat: 0.0018, Dice.Maize: 0.0443, Dice.Sorghum: 0.0037, Dice.Barley: 0.0347, Dice.Rye: 0.0012, Dice.Oats: 0.1246, Dice.Grapes: 0.0955, Dice.Rapeseed: 0.0382, Dice.Sunflower: 0.0084, Dice.Potatoes: 0.0031, Dice.Peas: 0.0696, Fscore.Wheat: 0.0018, Fscore.Maize: 0.0443, Fscore.Sorghum: 0.0037, Fscore.Barley: 0.0347, Fscore.Rye: 0.0012, Fscore.Oats: 0.1246, Fscore.Grapes: 0.0955, Fscore.Rapeseed: 0.0382, Fscore.Sunflower: 0.0084, Fscore.Potatoes: 0.0031, Fscore.Peas: 0.0696, Precision.Wheat: 0.0009, Precision.Maize: 0.1453, Precision.Sorghum: 0.0032, Precision.Barley: 0.5857, Precision.Rye: 0.0007, Precision.Oats: 0.0741, Precision.Grapes: 0.1816, Precision.Rapeseed: 0.0505, Precision.Sunflower: 0.0044, Precision.Potatoes: 0.0016, Precision.Peas: 0.0443, Recall.Wheat: 0.1225, Recall.Maize: 0.0261, Recall.Sorghum: 0.0043, Recall.Barley: 0.0179, Recall.Rye: 0.0052, Recall.Oats: 0.3926, Recall.Grapes: 0.0648, Recall.Rapeseed: 0.0307, Recall.Sunflower: 0.0954, Recall.Potatoes: 0.0949, Recall.Peas: 0.1618
+2025-01-07 20:15:19,930 - mmseg - INFO - Epoch [5][10/38]	lr: 9.279e-07, eta: 0:01:38, time: 0.660, data_time: 0.225, memory: 15650, decode.loss_ce: 2.2416, decode.acc_seg: 6.6837, aux.loss_ce: 2.2337, aux.acc_seg: 13.4414, loss: 4.4753
+2025-01-07 20:15:24,204 - mmseg - INFO - Epoch [5][20/38]	lr: 9.405e-07, eta: 0:01:33, time: 0.427, data_time: 0.005, memory: 15650, decode.loss_ce: 2.6697, decode.acc_seg: 8.1846, aux.loss_ce: 2.6511, aux.acc_seg: 13.3821, loss: 5.3208
+2025-01-07 20:15:28,548 - mmseg - INFO - Epoch [5][30/38]	lr: 9.479e-07, eta: 0:01:28, time: 0.434, data_time: 0.005, memory: 15650, decode.loss_ce: 2.4920, decode.acc_seg: 6.3322, aux.loss_ce: 2.4729, aux.acc_seg: 13.4588, loss: 4.9649
+2025-01-07 20:15:34,908 - mmseg - INFO - per class results:
+2025-01-07 20:15:34,910 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.09 | 13.26 |  0.17 |  0.17  |    0.09   | 13.26  |
+|   Maize   | 2.37 |  2.71 |  4.64 |  4.64  |   16.03   |  2.71  |
+|  Sorghum  | 0.18 |  0.41 |  0.37 |  0.37  |    0.33   |  0.41  |
+|   Barley  | 1.81 |  1.83 |  3.55 |  3.55  |   59.54   |  1.83  |
+|    Rye    | 0.07 |  0.63 |  0.14 |  0.14  |    0.08   |  0.63  |
+|    Oats   | 6.63 | 37.43 | 12.44 | 12.44  |    7.46   | 37.43  |
+|   Grapes  | 5.17 |  6.62 |  9.84 |  9.84  |   19.15   |  6.62  |
+|  Rapeseed | 2.01 |  3.17 |  3.94 |  3.94  |    5.22   |  3.17  |
+| Sunflower | 0.45 |  9.94 |  0.9  |  0.9   |    0.47   |  9.94  |
+|  Potatoes | 0.17 | 10.72 |  0.33 |  0.33  |    0.17   | 10.72  |
+|    Peas   | 3.67 | 16.38 |  7.09 |  7.09  |    4.52   | 16.38  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:15:34,910 - mmseg - INFO - Summary:
+2025-01-07 20:15:34,910 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.97 | 2.06 | 9.37 |  3.95 |   3.95  |   10.28    |   9.37  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:15:35,473 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_4.pth was removed
+2025-01-07 20:15:47,871 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_5.pth.
+2025-01-07 20:15:47,872 - mmseg - INFO - Best mIoU is 0.0206 at 5 epoch.
+2025-01-07 20:15:47,872 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:15:47,872 - mmseg - INFO - Epoch(val) [5][50]	aAcc: 0.0597, mIoU: 0.0206, mAcc: 0.0937, mDice: 0.0395, mFscore: 0.0395, mPrecision: 0.1028, mRecall: 0.0937, IoU.Wheat: 0.0009, IoU.Maize: 0.0237, IoU.Sorghum: 0.0018, IoU.Barley: 0.0181, IoU.Rye: 0.0007, IoU.Oats: 0.0663, IoU.Grapes: 0.0517, IoU.Rapeseed: 0.0201, IoU.Sunflower: 0.0045, IoU.Potatoes: 0.0017, IoU.Peas: 0.0367, Acc.Wheat: 0.1326, Acc.Maize: 0.0271, Acc.Sorghum: 0.0041, Acc.Barley: 0.0183, Acc.Rye: 0.0063, Acc.Oats: 0.3743, Acc.Grapes: 0.0662, Acc.Rapeseed: 0.0317, Acc.Sunflower: 0.0994, Acc.Potatoes: 0.1072, Acc.Peas: 0.1638, Dice.Wheat: 0.0017, Dice.Maize: 0.0464, Dice.Sorghum: 0.0037, Dice.Barley: 0.0355, Dice.Rye: 0.0014, Dice.Oats: 0.1244, Dice.Grapes: 0.0984, Dice.Rapeseed: 0.0394, Dice.Sunflower: 0.0090, Dice.Potatoes: 0.0033, Dice.Peas: 0.0709, Fscore.Wheat: 0.0017, Fscore.Maize: 0.0464, Fscore.Sorghum: 0.0037, Fscore.Barley: 0.0355, Fscore.Rye: 0.0014, Fscore.Oats: 0.1244, Fscore.Grapes: 0.0984, Fscore.Rapeseed: 0.0394, Fscore.Sunflower: 0.0090, Fscore.Potatoes: 0.0033, Fscore.Peas: 0.0709, Precision.Wheat: 0.0009, Precision.Maize: 0.1603, Precision.Sorghum: 0.0033, Precision.Barley: 0.5954, Precision.Rye: 0.0008, Precision.Oats: 0.0746, Precision.Grapes: 0.1915, Precision.Rapeseed: 0.0522, Precision.Sunflower: 0.0047, Precision.Potatoes: 0.0017, Precision.Peas: 0.0452, Recall.Wheat: 0.1326, Recall.Maize: 0.0271, Recall.Sorghum: 0.0041, Recall.Barley: 0.0183, Recall.Rye: 0.0063, Recall.Oats: 0.3743, Recall.Grapes: 0.0662, Recall.Rapeseed: 0.0317, Recall.Sunflower: 0.0994, Recall.Potatoes: 0.1072, Recall.Peas: 0.1638
+2025-01-07 20:15:54,475 - mmseg - INFO - Epoch [6][10/38]	lr: 9.479e-07, eta: 0:01:19, time: 0.653, data_time: 0.220, memory: 15650, decode.loss_ce: 4.7377, decode.acc_seg: 9.3470, aux.loss_ce: 4.6699, aux.acc_seg: 13.5836, loss: 9.4077
+2025-01-07 20:15:58,841 - mmseg - INFO - Epoch [6][20/38]	lr: 9.405e-07, eta: 0:01:14, time: 0.437, data_time: 0.005, memory: 15650, decode.loss_ce: 2.2628, decode.acc_seg: 6.7463, aux.loss_ce: 2.2508, aux.acc_seg: 16.6079, loss: 4.5136
+2025-01-07 20:16:03,240 - mmseg - INFO - Epoch [6][30/38]	lr: 9.279e-07, eta: 0:01:10, time: 0.440, data_time: 0.005, memory: 15650, decode.loss_ce: 3.1409, decode.acc_seg: 7.8724, aux.loss_ce: 3.0979, aux.acc_seg: 19.1081, loss: 6.2388
+2025-01-07 20:16:09,682 - mmseg - INFO - per class results:
+2025-01-07 20:16:09,684 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 | 12.92 |  0.16 |  0.16  |    0.08   | 12.92  |
+|   Maize   | 2.73 |  3.13 |  5.31 |  5.31  |   17.59   |  3.13  |
+|  Sorghum  | 0.22 |  0.57 |  0.44 |  0.44  |    0.36   |  0.57  |
+|   Barley  | 1.73 |  1.75 |  3.4  |  3.4   |   59.84   |  1.75  |
+|    Rye    | 0.13 |  2.45 |  0.27 |  0.27  |    0.14   |  2.45  |
+|    Oats   | 6.69 | 35.27 | 12.55 | 12.55  |    7.63   | 35.27  |
+|   Grapes  | 5.55 |  7.02 | 10.52 | 10.52  |   20.93   |  7.02  |
+|  Rapeseed | 2.08 |  3.19 |  4.08 |  4.08  |    5.66   |  3.19  |
+| Sunflower | 0.46 |  9.36 |  0.92 |  0.92  |    0.48   |  9.36  |
+|  Potatoes | 0.18 | 13.53 |  0.36 |  0.36  |    0.18   | 13.53  |
+|    Peas   | 3.67 | 15.75 |  7.07 |  7.07  |    4.56   | 15.75  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:16:09,684 - mmseg - INFO - Summary:
+2025-01-07 20:16:09,684 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.86 | 2.14 | 9.54 |  4.1  |   4.1   |   10.68    |   9.54  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:16:10,252 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_5.pth was removed
+2025-01-07 20:16:23,108 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_6.pth.
+2025-01-07 20:16:23,109 - mmseg - INFO - Best mIoU is 0.0214 at 6 epoch.
+2025-01-07 20:16:23,110 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:16:23,110 - mmseg - INFO - Epoch(val) [6][50]	aAcc: 0.0586, mIoU: 0.0214, mAcc: 0.0954, mDice: 0.0410, mFscore: 0.0410, mPrecision: 0.1068, mRecall: 0.0954, IoU.Wheat: 0.0008, IoU.Maize: 0.0273, IoU.Sorghum: 0.0022, IoU.Barley: 0.0173, IoU.Rye: 0.0013, IoU.Oats: 0.0669, IoU.Grapes: 0.0555, IoU.Rapeseed: 0.0208, IoU.Sunflower: 0.0046, IoU.Potatoes: 0.0018, IoU.Peas: 0.0367, Acc.Wheat: 0.1292, Acc.Maize: 0.0313, Acc.Sorghum: 0.0057, Acc.Barley: 0.0175, Acc.Rye: 0.0245, Acc.Oats: 0.3527, Acc.Grapes: 0.0702, Acc.Rapeseed: 0.0319, Acc.Sunflower: 0.0936, Acc.Potatoes: 0.1353, Acc.Peas: 0.1575, Dice.Wheat: 0.0016, Dice.Maize: 0.0531, Dice.Sorghum: 0.0044, Dice.Barley: 0.0340, Dice.Rye: 0.0027, Dice.Oats: 0.1255, Dice.Grapes: 0.1052, Dice.Rapeseed: 0.0408, Dice.Sunflower: 0.0092, Dice.Potatoes: 0.0036, Dice.Peas: 0.0707, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0531, Fscore.Sorghum: 0.0044, Fscore.Barley: 0.0340, Fscore.Rye: 0.0027, Fscore.Oats: 0.1255, Fscore.Grapes: 0.1052, Fscore.Rapeseed: 0.0408, Fscore.Sunflower: 0.0092, Fscore.Potatoes: 0.0036, Fscore.Peas: 0.0707, Precision.Wheat: 0.0008, Precision.Maize: 0.1759, Precision.Sorghum: 0.0036, Precision.Barley: 0.5984, Precision.Rye: 0.0014, Precision.Oats: 0.0763, Precision.Grapes: 0.2093, Precision.Rapeseed: 0.0566, Precision.Sunflower: 0.0048, Precision.Potatoes: 0.0018, Precision.Peas: 0.0456, Recall.Wheat: 0.1292, Recall.Maize: 0.0313, Recall.Sorghum: 0.0057, Recall.Barley: 0.0175, Recall.Rye: 0.0245, Recall.Oats: 0.3527, Recall.Grapes: 0.0702, Recall.Rapeseed: 0.0319, Recall.Sunflower: 0.0936, Recall.Potatoes: 0.1353, Recall.Peas: 0.1575
+2025-01-07 20:16:29,758 - mmseg - INFO - Epoch [7][10/38]	lr: 8.919e-07, eta: 0:01:01, time: 0.658, data_time: 0.224, memory: 15650, decode.loss_ce: 3.1360, decode.acc_seg: 7.5097, aux.loss_ce: 3.1072, aux.acc_seg: 14.1199, loss: 6.2432
+2025-01-07 20:16:34,125 - mmseg - INFO - Epoch [7][20/38]	lr: 8.645e-07, eta: 0:00:57, time: 0.437, data_time: 0.005, memory: 15650, decode.loss_ce: 2.1741, decode.acc_seg: 9.0488, aux.loss_ce: 2.1605, aux.acc_seg: 16.9924, loss: 4.3347
+2025-01-07 20:16:38,501 - mmseg - INFO - Epoch [7][30/38]	lr: 8.319e-07, eta: 0:00:53, time: 0.438, data_time: 0.005, memory: 15650, decode.loss_ce: 3.6697, decode.acc_seg: 6.6666, aux.loss_ce: 3.5439, aux.acc_seg: 18.0468, loss: 7.2135
+2025-01-07 20:16:44,853 - mmseg - INFO - per class results:
+2025-01-07 20:16:44,854 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 | 12.47 |  0.16 |  0.16  |    0.08   | 12.47  |
+|   Maize   | 2.99 |  3.43 |  5.81 |  5.81  |   18.88   |  3.43  |
+|  Sorghum  | 0.22 |  0.59 |  0.44 |  0.44  |    0.35   |  0.59  |
+|   Barley  | 1.7  |  1.72 |  3.34 |  3.34  |   60.17   |  1.72  |
+|    Rye    | 0.14 |  2.4  |  0.28 |  0.28  |    0.15   |  2.4   |
+|    Oats   | 6.73 | 34.58 |  12.6 |  12.6  |    7.71   | 34.58  |
+|   Grapes  | 5.66 |  7.02 | 10.71 | 10.71  |    22.5   |  7.02  |
+|  Rapeseed | 2.12 |  3.18 |  4.16 |  4.16  |    5.98   |  3.18  |
+| Sunflower | 0.46 |  9.41 |  0.91 |  0.91  |    0.48   |  9.41  |
+|  Potatoes | 0.19 | 16.99 |  0.38 |  0.38  |    0.19   | 16.99  |
+|    Peas   | 3.73 | 15.69 |  7.18 |  7.18  |    4.66   | 15.69  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:16:44,854 - mmseg - INFO - Summary:
+2025-01-07 20:16:44,855 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.83 | 2.18 | 9.77 |  4.18 |   4.18  |   11.01    |   9.77  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:16:45,421 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_6.pth was removed
+2025-01-07 20:16:57,941 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_7.pth.
+2025-01-07 20:16:57,941 - mmseg - INFO - Best mIoU is 0.0218 at 7 epoch.
+2025-01-07 20:16:57,942 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:16:57,942 - mmseg - INFO - Epoch(val) [7][50]	aAcc: 0.0583, mIoU: 0.0218, mAcc: 0.0977, mDice: 0.0418, mFscore: 0.0418, mPrecision: 0.1101, mRecall: 0.0977, IoU.Wheat: 0.0008, IoU.Maize: 0.0299, IoU.Sorghum: 0.0022, IoU.Barley: 0.0170, IoU.Rye: 0.0014, IoU.Oats: 0.0673, IoU.Grapes: 0.0566, IoU.Rapeseed: 0.0212, IoU.Sunflower: 0.0046, IoU.Potatoes: 0.0019, IoU.Peas: 0.0373, Acc.Wheat: 0.1247, Acc.Maize: 0.0343, Acc.Sorghum: 0.0059, Acc.Barley: 0.0172, Acc.Rye: 0.0240, Acc.Oats: 0.3458, Acc.Grapes: 0.0702, Acc.Rapeseed: 0.0318, Acc.Sunflower: 0.0941, Acc.Potatoes: 0.1699, Acc.Peas: 0.1569, Dice.Wheat: 0.0016, Dice.Maize: 0.0581, Dice.Sorghum: 0.0044, Dice.Barley: 0.0334, Dice.Rye: 0.0028, Dice.Oats: 0.1260, Dice.Grapes: 0.1071, Dice.Rapeseed: 0.0416, Dice.Sunflower: 0.0091, Dice.Potatoes: 0.0038, Dice.Peas: 0.0718, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0581, Fscore.Sorghum: 0.0044, Fscore.Barley: 0.0334, Fscore.Rye: 0.0028, Fscore.Oats: 0.1260, Fscore.Grapes: 0.1071, Fscore.Rapeseed: 0.0416, Fscore.Sunflower: 0.0091, Fscore.Potatoes: 0.0038, Fscore.Peas: 0.0718, Precision.Wheat: 0.0008, Precision.Maize: 0.1888, Precision.Sorghum: 0.0035, Precision.Barley: 0.6017, Precision.Rye: 0.0015, Precision.Oats: 0.0771, Precision.Grapes: 0.2250, Precision.Rapeseed: 0.0598, Precision.Sunflower: 0.0048, Precision.Potatoes: 0.0019, Precision.Peas: 0.0466, Recall.Wheat: 0.1247, Recall.Maize: 0.0343, Recall.Sorghum: 0.0059, Recall.Barley: 0.0172, Recall.Rye: 0.0240, Recall.Oats: 0.3458, Recall.Grapes: 0.0702, Recall.Rapeseed: 0.0318, Recall.Sunflower: 0.0941, Recall.Potatoes: 0.1699, Recall.Peas: 0.1569
+2025-01-07 20:17:04,512 - mmseg - INFO - Epoch [8][10/38]	lr: 7.599e-07, eta: 0:00:44, time: 0.649, data_time: 0.221, memory: 15650, decode.loss_ce: 3.3017, decode.acc_seg: 9.8177, aux.loss_ce: 3.2638, aux.acc_seg: 16.1881, loss: 6.5655
+2025-01-07 20:17:08,873 - mmseg - INFO - Epoch [8][20/38]	lr: 7.125e-07, eta: 0:00:40, time: 0.436, data_time: 0.005, memory: 15650, decode.loss_ce: 2.2803, decode.acc_seg: 6.4874, aux.loss_ce: 2.2472, aux.acc_seg: 14.8673, loss: 4.5275
+2025-01-07 20:17:13,263 - mmseg - INFO - Epoch [8][30/38]	lr: 6.599e-07, eta: 0:00:36, time: 0.439, data_time: 0.005, memory: 15650, decode.loss_ce: 1.8716, decode.acc_seg: 6.4961, aux.loss_ce: 1.8514, aux.acc_seg: 14.4450, loss: 3.7230
+2025-01-07 20:17:19,696 - mmseg - INFO - per class results:
+2025-01-07 20:17:19,698 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 | 12.81 |  0.16 |  0.16  |    0.08   | 12.81  |
+|   Maize   | 3.11 |  3.54 |  6.03 |  6.03  |   20.32   |  3.54  |
+|  Sorghum  | 0.22 |  0.57 |  0.44 |  0.44  |    0.35   |  0.57  |
+|   Barley  | 1.71 |  1.73 |  3.36 |  3.36  |   60.72   |  1.73  |
+|    Rye    | 0.16 |  2.87 |  0.31 |  0.31  |    0.17   |  2.87  |
+|    Oats   | 6.71 | 33.28 | 12.57 | 12.57  |    7.75   | 33.28  |
+|   Grapes  | 5.69 |  6.97 | 10.77 | 10.77  |   23.77   |  6.97  |
+|  Rapeseed | 2.18 |  3.22 |  4.26 |  4.26  |    6.32   |  3.22  |
+| Sunflower | 0.49 |  9.94 |  0.98 |  0.98  |    0.52   |  9.94  |
+|  Potatoes | 0.18 | 17.57 |  0.37 |  0.37  |    0.18   | 17.57  |
+|    Peas   | 3.8  | 16.07 |  7.33 |  7.33  |    4.75   | 16.07  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:17:19,698 - mmseg - INFO - Summary:
+2025-01-07 20:17:19,698 - mmseg - INFO - 
++------+------+------+-------+---------+------------+---------+
+| aAcc | mIoU | mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+------+-------+---------+------------+---------+
+| 5.77 | 2.21 | 9.87 |  4.23 |   4.23  |   11.36    |   9.87  |
++------+------+------+-------+---------+------------+---------+
+2025-01-07 20:17:20,267 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_7.pth was removed
+2025-01-07 20:17:32,831 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_8.pth.
+2025-01-07 20:17:32,831 - mmseg - INFO - Best mIoU is 0.0221 at 8 epoch.
+2025-01-07 20:17:32,832 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:17:32,832 - mmseg - INFO - Epoch(val) [8][50]	aAcc: 0.0577, mIoU: 0.0221, mAcc: 0.0987, mDice: 0.0423, mFscore: 0.0423, mPrecision: 0.1136, mRecall: 0.0987, IoU.Wheat: 0.0008, IoU.Maize: 0.0311, IoU.Sorghum: 0.0022, IoU.Barley: 0.0171, IoU.Rye: 0.0016, IoU.Oats: 0.0671, IoU.Grapes: 0.0569, IoU.Rapeseed: 0.0218, IoU.Sunflower: 0.0049, IoU.Potatoes: 0.0018, IoU.Peas: 0.0380, Acc.Wheat: 0.1281, Acc.Maize: 0.0354, Acc.Sorghum: 0.0057, Acc.Barley: 0.0173, Acc.Rye: 0.0287, Acc.Oats: 0.3328, Acc.Grapes: 0.0697, Acc.Rapeseed: 0.0322, Acc.Sunflower: 0.0994, Acc.Potatoes: 0.1757, Acc.Peas: 0.1607, Dice.Wheat: 0.0016, Dice.Maize: 0.0603, Dice.Sorghum: 0.0044, Dice.Barley: 0.0336, Dice.Rye: 0.0031, Dice.Oats: 0.1257, Dice.Grapes: 0.1077, Dice.Rapeseed: 0.0426, Dice.Sunflower: 0.0098, Dice.Potatoes: 0.0037, Dice.Peas: 0.0733, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0603, Fscore.Sorghum: 0.0044, Fscore.Barley: 0.0336, Fscore.Rye: 0.0031, Fscore.Oats: 0.1257, Fscore.Grapes: 0.1077, Fscore.Rapeseed: 0.0426, Fscore.Sunflower: 0.0098, Fscore.Potatoes: 0.0037, Fscore.Peas: 0.0733, Precision.Wheat: 0.0008, Precision.Maize: 0.2032, Precision.Sorghum: 0.0035, Precision.Barley: 0.6072, Precision.Rye: 0.0017, Precision.Oats: 0.0775, Precision.Grapes: 0.2377, Precision.Rapeseed: 0.0632, Precision.Sunflower: 0.0052, Precision.Potatoes: 0.0018, Precision.Peas: 0.0475, Recall.Wheat: 0.1281, Recall.Maize: 0.0354, Recall.Sorghum: 0.0057, Recall.Barley: 0.0173, Recall.Rye: 0.0287, Recall.Oats: 0.3328, Recall.Grapes: 0.0697, Recall.Rapeseed: 0.0322, Recall.Sunflower: 0.0994, Recall.Potatoes: 0.1757, Recall.Peas: 0.1607
+2025-01-07 20:17:39,454 - mmseg - INFO - Epoch [9][10/38]	lr: 5.519e-07, eta: 0:00:28, time: 0.654, data_time: 0.219, memory: 15650, decode.loss_ce: 2.0772, decode.acc_seg: 7.5621, aux.loss_ce: 2.0503, aux.acc_seg: 16.0929, loss: 4.1275
+2025-01-07 20:17:43,845 - mmseg - INFO - Epoch [9][20/38]	lr: 4.845e-07, eta: 0:00:23, time: 0.439, data_time: 0.005, memory: 15650, decode.loss_ce: 4.0069, decode.acc_seg: 9.1602, aux.loss_ce: 3.8989, aux.acc_seg: 16.0664, loss: 7.9057
+2025-01-07 20:17:48,208 - mmseg - INFO - Epoch [9][30/38]	lr: 4.119e-07, eta: 0:00:19, time: 0.436, data_time: 0.005, memory: 15650, decode.loss_ce: 2.0749, decode.acc_seg: 7.4211, aux.loss_ce: 2.0386, aux.acc_seg: 18.4512, loss: 4.1135
+2025-01-07 20:17:54,746 - mmseg - INFO - per class results:
+2025-01-07 20:17:54,748 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 | 13.15 |  0.16 |  0.16  |    0.08   | 13.15  |
+|   Maize   | 3.24 |  3.69 |  6.28 |  6.28  |   20.99   |  3.69  |
+|  Sorghum  | 0.23 |  0.62 |  0.46 |  0.46  |    0.36   |  0.62  |
+|   Barley  | 1.68 |  1.7  |  3.3  |  3.3   |   61.23   |  1.7   |
+|    Rye    | 0.18 |  4.12 |  0.37 |  0.37  |    0.19   |  4.12  |
+|    Oats   | 6.72 | 32.58 | 12.59 | 12.59  |    7.81   | 32.58  |
+|   Grapes  | 6.02 |  7.38 | 11.35 | 11.35  |   24.58   |  7.38  |
+|  Rapeseed | 2.22 |  3.23 |  4.34 |  4.34  |    6.61   |  3.23  |
+| Sunflower | 0.51 |  9.91 |  1.01 |  1.01  |    0.53   |  9.91  |
+|  Potatoes | 0.18 | 17.63 |  0.37 |  0.37  |    0.19   | 17.63  |
+|    Peas   | 3.87 | 16.31 |  7.44 |  7.44  |    4.82   | 16.31  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:17:54,748 - mmseg - INFO - Summary:
+2025-01-07 20:17:54,748 - mmseg - INFO - 
++------+------+-------+-------+---------+------------+---------+
+| aAcc | mIoU |  mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+-------+-------+---------+------------+---------+
+| 5.79 | 2.27 | 10.03 |  4.33 |   4.33  |   11.58    |  10.03  |
++------+------+-------+-------+---------+------------+---------+
+2025-01-07 20:17:55,320 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_8.pth was removed
+2025-01-07 20:18:07,907 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_9.pth.
+2025-01-07 20:18:07,908 - mmseg - INFO - Best mIoU is 0.0227 at 9 epoch.
+2025-01-07 20:18:07,908 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:18:07,909 - mmseg - INFO - Epoch(val) [9][50]	aAcc: 0.0579, mIoU: 0.0227, mAcc: 0.1003, mDice: 0.0433, mFscore: 0.0433, mPrecision: 0.1158, mRecall: 0.1003, IoU.Wheat: 0.0008, IoU.Maize: 0.0324, IoU.Sorghum: 0.0023, IoU.Barley: 0.0168, IoU.Rye: 0.0018, IoU.Oats: 0.0672, IoU.Grapes: 0.0602, IoU.Rapeseed: 0.0222, IoU.Sunflower: 0.0051, IoU.Potatoes: 0.0018, IoU.Peas: 0.0387, Acc.Wheat: 0.1315, Acc.Maize: 0.0369, Acc.Sorghum: 0.0062, Acc.Barley: 0.0170, Acc.Rye: 0.0412, Acc.Oats: 0.3258, Acc.Grapes: 0.0738, Acc.Rapeseed: 0.0323, Acc.Sunflower: 0.0991, Acc.Potatoes: 0.1763, Acc.Peas: 0.1631, Dice.Wheat: 0.0016, Dice.Maize: 0.0628, Dice.Sorghum: 0.0046, Dice.Barley: 0.0330, Dice.Rye: 0.0037, Dice.Oats: 0.1259, Dice.Grapes: 0.1135, Dice.Rapeseed: 0.0434, Dice.Sunflower: 0.0101, Dice.Potatoes: 0.0037, Dice.Peas: 0.0744, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0628, Fscore.Sorghum: 0.0046, Fscore.Barley: 0.0330, Fscore.Rye: 0.0037, Fscore.Oats: 0.1259, Fscore.Grapes: 0.1135, Fscore.Rapeseed: 0.0434, Fscore.Sunflower: 0.0101, Fscore.Potatoes: 0.0037, Fscore.Peas: 0.0744, Precision.Wheat: 0.0008, Precision.Maize: 0.2099, Precision.Sorghum: 0.0036, Precision.Barley: 0.6123, Precision.Rye: 0.0019, Precision.Oats: 0.0781, Precision.Grapes: 0.2458, Precision.Rapeseed: 0.0661, Precision.Sunflower: 0.0053, Precision.Potatoes: 0.0019, Precision.Peas: 0.0482, Recall.Wheat: 0.1315, Recall.Maize: 0.0369, Recall.Sorghum: 0.0062, Recall.Barley: 0.0170, Recall.Rye: 0.0412, Recall.Oats: 0.3258, Recall.Grapes: 0.0738, Recall.Rapeseed: 0.0323, Recall.Sunflower: 0.0991, Recall.Potatoes: 0.1763, Recall.Peas: 0.1631
+2025-01-07 20:18:14,589 - mmseg - INFO - Epoch [10][10/38]	lr: 2.679e-07, eta: 0:00:11, time: 0.659, data_time: 0.223, memory: 15650, decode.loss_ce: 4.5729, decode.acc_seg: 11.2181, aux.loss_ce: 4.4709, aux.acc_seg: 17.4237, loss: 9.0437
+2025-01-07 20:18:18,970 - mmseg - INFO - Epoch [10][20/38]	lr: 1.805e-07, eta: 0:00:07, time: 0.438, data_time: 0.005, memory: 15650, decode.loss_ce: 1.7167, decode.acc_seg: 5.9624, aux.loss_ce: 1.6829, aux.acc_seg: 13.7026, loss: 3.3995
+2025-01-07 20:18:23,375 - mmseg - INFO - Epoch [10][30/38]	lr: 8.787e-08, eta: 0:00:03, time: 0.440, data_time: 0.005, memory: 15650, decode.loss_ce: 2.0807, decode.acc_seg: 9.0610, aux.loss_ce: 2.0784, aux.acc_seg: 13.2289, loss: 4.1591
+2025-01-07 20:18:26,830 - mmseg - INFO - Saving checkpoint at 10 epochs
+2025-01-07 20:18:41,499 - mmseg - INFO - per class results:
+2025-01-07 20:18:41,501 - mmseg - INFO - 
++-----------+------+-------+-------+--------+-----------+--------+
+|   Class   | IoU  |  Acc  |  Dice | Fscore | Precision | Recall |
++-----------+------+-------+-------+--------+-----------+--------+
+|   Wheat   | 0.08 | 13.03 |  0.16 |  0.16  |    0.08   | 13.03  |
+|   Maize   | 3.32 |  3.79 |  6.43 |  6.43  |    21.3   |  3.79  |
+|  Sorghum  | 0.22 |  0.59 |  0.44 |  0.44  |    0.35   |  0.59  |
+|   Barley  | 1.68 |  1.7  |  3.31 |  3.31  |   61.56   |  1.7   |
+|    Rye    | 0.19 |  4.96 |  0.37 |  0.37  |    0.19   |  4.96  |
+|    Oats   | 6.7  | 31.77 | 12.56 | 12.56  |    7.83   | 31.77  |
+|   Grapes  | 6.14 |  7.54 | 11.57 | 11.57  |   24.91   |  7.54  |
+|  Rapeseed | 2.2  |  3.15 |  4.31 |  4.31  |    6.78   |  3.15  |
+| Sunflower | 0.5  |  9.62 |  0.99 |  0.99  |    0.52   |  9.62  |
+|  Potatoes | 0.18 | 17.69 |  0.37 |  0.37  |    0.19   | 17.69  |
+|    Peas   | 3.89 | 16.44 |  7.49 |  7.49  |    4.85   | 16.44  |
++-----------+------+-------+-------+--------+-----------+--------+
+2025-01-07 20:18:41,501 - mmseg - INFO - Summary:
+2025-01-07 20:18:41,501 - mmseg - INFO - 
++------+------+-------+-------+---------+------------+---------+
+| aAcc | mIoU |  mAcc | mDice | mFscore | mPrecision | mRecall |
++------+------+-------+-------+---------+------------+---------+
+| 5.77 | 2.28 | 10.03 |  4.36 |   4.36  |   11.69    |  10.03  |
++------+------+-------+-------+---------+------------+---------+
+2025-01-07 20:18:42,074 - mmseg - INFO - The previous best checkpoint /home/featurize/Results/Size_5_Experiment_2_Fold_1_Setting_2/best_mIoU_epoch_9.pth was removed
+2025-01-07 20:18:54,317 - mmseg - INFO - Now best checkpoint is saved as best_mIoU_epoch_10.pth.
+2025-01-07 20:18:54,318 - mmseg - INFO - Best mIoU is 0.0228 at 10 epoch.
+2025-01-07 20:18:54,318 - mmseg - INFO - Exp name: size_5_experiment_2_fold_1_setting_2.py
+2025-01-07 20:18:54,319 - mmseg - INFO - Epoch(val) [10][50]	aAcc: 0.0577, mIoU: 0.0228, mAcc: 0.1003, mDice: 0.0436, mFscore: 0.0436, mPrecision: 0.1169, mRecall: 0.1003, IoU.Wheat: 0.0008, IoU.Maize: 0.0332, IoU.Sorghum: 0.0022, IoU.Barley: 0.0168, IoU.Rye: 0.0019, IoU.Oats: 0.0670, IoU.Grapes: 0.0614, IoU.Rapeseed: 0.0220, IoU.Sunflower: 0.0050, IoU.Potatoes: 0.0018, IoU.Peas: 0.0389, Acc.Wheat: 0.1303, Acc.Maize: 0.0379, Acc.Sorghum: 0.0059, Acc.Barley: 0.0170, Acc.Rye: 0.0496, Acc.Oats: 0.3177, Acc.Grapes: 0.0754, Acc.Rapeseed: 0.0315, Acc.Sunflower: 0.0962, Acc.Potatoes: 0.1769, Acc.Peas: 0.1644, Dice.Wheat: 0.0016, Dice.Maize: 0.0643, Dice.Sorghum: 0.0044, Dice.Barley: 0.0331, Dice.Rye: 0.0037, Dice.Oats: 0.1256, Dice.Grapes: 0.1157, Dice.Rapeseed: 0.0431, Dice.Sunflower: 0.0099, Dice.Potatoes: 0.0037, Dice.Peas: 0.0749, Fscore.Wheat: 0.0016, Fscore.Maize: 0.0643, Fscore.Sorghum: 0.0044, Fscore.Barley: 0.0331, Fscore.Rye: 0.0037, Fscore.Oats: 0.1256, Fscore.Grapes: 0.1157, Fscore.Rapeseed: 0.0431, Fscore.Sunflower: 0.0099, Fscore.Potatoes: 0.0037, Fscore.Peas: 0.0749, Precision.Wheat: 0.0008, Precision.Maize: 0.2130, Precision.Sorghum: 0.0035, Precision.Barley: 0.6156, Precision.Rye: 0.0019, Precision.Oats: 0.0783, Precision.Grapes: 0.2491, Precision.Rapeseed: 0.0678, Precision.Sunflower: 0.0052, Precision.Potatoes: 0.0019, Precision.Peas: 0.0485, Recall.Wheat: 0.1303, Recall.Maize: 0.0379, Recall.Sorghum: 0.0059, Recall.Barley: 0.0170, Recall.Rye: 0.0496, Recall.Oats: 0.3177, Recall.Grapes: 0.0754, Recall.Rapeseed: 0.0315, Recall.Sunflower: 0.0962, Recall.Potatoes: 0.1769, Recall.Peas: 0.1644
