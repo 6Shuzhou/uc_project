@@ -39,17 +39,11 @@ def compute_class_weights(transformation_setting, size, experiment, fold):
     total_count = sum(list(class_counts.values()))
     class_weights = {}
 
-    #print(f"Size {size} Experiment {experiment} Fold {fold} Setting {transformation_setting}, Total Count: {total_count}, Class Counts: {class_counts}")
-
     for k, v in class_counts.items(): # Determine Class Weights with Formula based on: https://github.com/Orion-AI-Lab/S4A-Models/blob/master/compute_class_weights.py (Sen4Agrinet Experiments)
         class_weights[k] = total_count / (len(class_counts) * v)
 
     print(f"Size {size} Experiment {experiment} Fold {fold} Setting {transformation_setting}, Class Weights: {class_weights}")
     
-    # with open(data_info_path + "Class_Counts.txt", "w") as file:
-    #     for cc in class_counts.values():
-    #         file.write(f"{cc}\n")
-
     with open(data_info_path + "Class_Weights.txt", "w") as file: # Save Class Weights to File
         for cw in class_weights.values():
             file.write(f"{cw}\n")
